@@ -1,0 +1,27 @@
+{
+  "name": "Django",
+  "version": "1.0.0",
+  "description": "Learning Django Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alekskositsyn/Django.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alekskositsyn/Django/issues"
+  },
+  "homepage": "https://github.com/alekskositsyn/Django#readme",
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.5"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
