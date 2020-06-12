@@ -1,35 +1,102 @@
+@charset "UTF-8";
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .header {
-  background-color: #c0c0c0a8;
   height: 75px;
   margin: 0 auto;
-  padding-left: 90px;
-  padding-right: 90px;
 }
 
-.logo {
-  width: 75px;
+.header .navbar-brand-name {
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+.header img[alt='logo'] {
+  margin-left: 10px;
+  width: 45px;
+  height: 45px;
+}
+
+.header .nav-item {
+  border-bottom: 2px solid #0000005b;
+}
+
+.header .nav-item:hover {
+  border-bottom: 2px solid #000;
+}
+
+.header .active {
+  border-bottom: 2px solid #000;
+}
+
+.header .fa-heart {
+  margin-left: 20px;
+  font-size: 2em;
+}
+
+.header .fa-shopping-basket {
+  margin-left: 20px;
+  font-size: 2em;
+}
+
+.range {
+  height: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.range img[alt="carousel"] {
+  width: 750px;
+  height: 600px;
+}
+
+.clr {
   height: 75px;
+}
+
+.slider-footer {
+  padding-top: 20px;
+  height: 75px;
+  background-color: #f7f7f7;
+  margin: -75px auto 0;
+}
+
+.slider-footer .copy {
+  color: #6c6c6c;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 26px;
+  text-transform: uppercase;
+  /* Text style for "©,  Copyri" */
+  letter-spacing: 0.6px;
+  margin-top: 10px;
+}
+
+.slider-footer .terms {
+  color: #6c6c6c;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 26px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 10px;
+}
+
+.slider-footer .socail_links {
+  font-size: 25px;
+  margin-left: 150px;
   float: left;
 }
 
-.logo img {
-  width: 75px;
-  height: 75px;
+.slider-footer .social_link {
+  color: #6c6c6c;
 }
 
-.navigation {
-  margin-left: 40px;
-  height: 75px;
-}
-
-.linkOfNav-btn {
-  display: inline-block;
-  color: #000;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.icon-login {
-  float: left;
+.slider-footer .social_link:hover {
+  color: black;
 }
 /*# sourceMappingURL=style.css.map */

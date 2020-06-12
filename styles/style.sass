@@ -1,38 +1,89 @@
 // $font-stack: Helvetica, sans-serif
 $menu-height: 75px  
 $header-background-color: #c0c0c0a8
+.clearfix
+  content: ""
+  display: table
+  clear: both
 
 .header
-    background-color: $header-background-color
     height: $menu-height
     margin: 0 auto
-    padding: 
-        left: 90px
-        right: 90px
 
-.logo 
-    width: 75px
+    .navbar-brand-name
+        margin-left: 10px
+        padding-top: 10px
+
+    img[alt='logo'] 
+        margin-left: 10px
+        width: 45px
+        height: 45px
+
+    .nav-item
+        border-bottom: 2px solid #0000005b
+        &:hover
+            border-bottom: 2px solid #000
+    .active
+        border-bottom: 2px solid #000
+    .fa-heart
+        margin-left: 20px
+        font-size: 2em
+
+    .fa-shopping-basket
+        margin-left: 20px
+        font-size: 2em
+
+.range
+    height: 100%
+    margin-top: 40px
+    margin-bottom: 40px
+    img[alt="carousel"]
+        width: 750px
+        height: 600px
+
+.clr 
     height: 75px
-    float: left
-    img
-        width: 75px
-        height: 75px
 
-.navigation
-    margin-left: 40px
-    height: $menu-height
-
-.nav-btn
+.slider-footer 
+    padding-top: 20px
+    height: 75px
+    background-color: #f7f7f7
+    margin: -75px auto 0
     
-    
-.linkOfNav-btn
-    display: inline-block
-    color: #000
-    text-decoration: none
-    font-size: 20px
+    .copy 
+        color: #6c6c6c
+        font-size: 11px
+        font-weight: 700
+        line-height: 26px
+        text-transform: uppercase
+        /* Text style for "©,  Copyri" */
+        letter-spacing: 0.6px
+        margin-top: 10px
 
-.icon-login
-    float: left
+    
+    .terms 
+        color: #6c6c6c
+        font-size: 11px
+        font-weight: 700
+        line-height: 26px
+        text-transform: uppercase
+        letter-spacing: 0.6px
+        margin-top: 10px
+    
+    .socail_links 
+        font-size: 25px
+        margin-left: 150px
+        float: left
+    
+    .social_link 
+        color: #6c6c6c
+        &:hover 
+            color: black
+
+
+
+
+
 
     
 
