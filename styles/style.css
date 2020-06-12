@@ -1,0 +1,35 @@
+.header {
+  background-color: #c0c0c0a8;
+  height: 75px;
+  margin: 0 auto;
+  padding-left: 90px;
+  padding-right: 90px;
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+  float: left;
+}
+
+.logo img {
+  width: 75px;
+  height: 75px;
+}
+
+.navigation {
+  margin-left: 40px;
+  height: 75px;
+}
+
+.linkOfNav-btn {
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.icon-login {
+  float: left;
+}
+/*# sourceMappingURL=style.css.map */
