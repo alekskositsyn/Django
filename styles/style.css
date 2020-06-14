@@ -1,7 +1,15 @@
-@charset "UTF-8";
 .header {
   height: 75px;
   margin: 0 auto;
+}
+
+.header .form-inline {
+  margin-right: 10px;
+}
+
+.header .btn-outline-success {
+  color: black;
+  border-color: black;
 }
 
 .header .navbar-brand-name {
@@ -28,7 +36,8 @@
 }
 
 .header .fa-heart {
-  margin-left: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
   font-size: 2em;
 }
 
@@ -41,7 +50,8 @@
 }
 
 .header .fa-shopping-basket {
-  margin-left: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
   font-size: 2em;
 }
 
@@ -153,44 +163,77 @@
 }
 
 .slider-footer {
+  width: 100%;
   padding-top: 20px;
   height: 75px;
   background-color: #f7f7f7;
   margin: -75px auto 0;
 }
 
+.slider-footer .footer {
+  width: 100%;
+  background-color: #f7f7f7;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
 .slider-footer .copy {
+  text-align: center;
   color: #6c6c6c;
   font-size: 11px;
   font-weight: 700;
-  line-height: 26px;
   text-transform: uppercase;
-  /* Text style for "©,  Copyri" */
   letter-spacing: 0.6px;
-  margin-top: 10px;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .slider-footer .terms {
+  text-align: center;
   color: #6c6c6c;
   font-size: 11px;
   font-weight: 700;
-  line-height: 26px;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  margin-top: 10px;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
-.slider-footer .socail_links {
-  font-size: 25px;
-  margin-left: 150px;
-  float: left;
+.slider-footer .social_links {
+  text-align: center;
 }
 
 .slider-footer .social_link {
   color: #6c6c6c;
+  font-size: 25px;
 }
 
 .slider-footer .social_link:hover {
   color: black;
+}
+
+.contact-us {
+  height: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.contact-us .btn {
+  color: #ffffff;
+  background-color: #f44336;
+  border: none;
+  -webkit-box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+          box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.contact-us .btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.contact-us .btn:hover {
+  color: #e0e0e0;
 }
 /*# sourceMappingURL=style.css.map */

@@ -9,6 +9,11 @@ $header-background-color: #c0c0c0a8
 .header
     height: $menu-height
     margin: 0 auto
+    .form-inline
+        margin-right: 10px
+    .btn-outline-success
+        color: black
+        border-color: black
 
     .navbar-brand-name
         margin-left: 10px
@@ -27,7 +32,8 @@ $header-background-color: #c0c0c0a8
         border-bottom: 2px solid #000
         
     .fa-heart
-        margin-left: 20px
+        margin-right: 10px
+        margin-left: 5px
         font-size: 2em
         &:hover
             color: #f44336
@@ -35,7 +41,8 @@ $header-background-color: #c0c0c0a8
             opacity: 0
 
     .fa-shopping-basket
-        margin-left: 20px
+        margin-right: 10px
+        margin-left: 5px
         font-size: 2em
         &:hover
             color: #f44336
@@ -125,44 +132,61 @@ $header-background-color: #c0c0c0a8
     height: 75px
 
 .slider-footer 
+    width: 100%
     padding-top: 20px
     height: 75px
     background-color: #f7f7f7
     margin: -75px auto 0
-    
+    .footer
+        width: 100%
+        background-color: #f7f7f7
+        margin: 
+            left: 40px
+            right: 40px
     .copy 
+        text-align: center
         color: #6c6c6c
         font-size: 11px
         font-weight: 700
-        line-height: 26px
         text-transform: uppercase
-        /* Text style for "©,  Copyri" */
         letter-spacing: 0.6px
-        margin-top: 10px
-
-    
+        margin-bottom: 0
+        margin-top: 0
     .terms 
+        text-align: center
         color: #6c6c6c
         font-size: 11px
         font-weight: 700
-        line-height: 26px
         text-transform: uppercase
         letter-spacing: 0.6px
-        margin-top: 10px
-    
-    .socail_links 
-        font-size: 25px
-        margin-left: 150px
-        float: left
-    
+        margin-bottom: 0
+        margin-top: 0
+
+    .social_links
+        text-align: center
     .social_link 
         color: #6c6c6c
+        font-size: 25px
         &:hover 
             color: black
 
+.contact-us
+    height: 100%
+    margin:
+        top: 40px
+        bottom: 40px
+        left: 40px
+        right: 40px
+    .btn
+        color: #ffffff
+        background-color: #f44336
+        border: none
+        box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35) 
+        &:active 
+                box-shadow: none
 
-
-
+        &:hover 
+            color: rgb(224, 224, 224)
 
 
     
