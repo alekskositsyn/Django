@@ -1,10 +1,4 @@
 @charset "UTF-8";
-.clearfix {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .header {
   height: 75px;
   margin: 0 auto;
@@ -38,20 +32,120 @@
   font-size: 2em;
 }
 
+.header .fa-heart:hover {
+  color: #f44336;
+}
+
+.header .fa-heart:active {
+  opacity: 0;
+}
+
 .header .fa-shopping-basket {
   margin-left: 20px;
   font-size: 2em;
+}
+
+.header .fa-shopping-basket:hover {
+  color: #f44336;
+}
+
+.header .fa-shopping-basket:active {
+  opacity: 0;
 }
 
 .range {
   height: 100%;
   margin-top: 40px;
   margin-bottom: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .range img[alt="carousel"] {
   width: 750px;
   height: 600px;
+}
+
+.range .product {
+  text-align: center;
+}
+
+.range .nameOfProduct {
+  text-align: center;
+  font-size: 18px;
+}
+
+.range img[alt="product"] {
+  width: 240px;
+  height: 240px;
+}
+
+.product-deal .leftside img[alt="bigProductImg"] {
+  width: 100%;
+}
+
+.product-deal .rightside {
+  text-align: center;
+}
+
+.product-deal .rightside .button_order_deal {
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  -webkit-box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+          box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+  border-radius: 35px;
+  background-color: #f44336;
+  width: 100%;
+  height: 14%;
+}
+
+.product-deal .rightside .button_order_deal .button_red_deal {
+  text-align: center;
+  display: block;
+  padding-top: 4%;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24.01px;
+  text-transform: uppercase;
+  letter-spacing: 4.4px;
+}
+
+.product-deal .rightside .button_order_deal:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.product-deal .rightside .button_order_deal:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.product-deal .rightside .price {
+  text-align: center;
+}
+
+.product-deal .rightside .price .numprice {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.product-deal .rightside .price .currancy {
+  margin-left: 5px;
+  font-size: 30px;
+}
+
+.product-deal .rightside .desc_product_deal {
+  margin-top: 50px;
+  color: #212121;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24.01px;
+  letter-spacing: 0.4px;
 }
 
 .clr {

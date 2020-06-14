@@ -1,7 +1,7 @@
 // $font-stack: Helvetica, sans-serif
 $menu-height: 75px  
 $header-background-color: #c0c0c0a8
-.clearfix
+%clearfix
   content: ""
   display: table
   clear: both
@@ -29,18 +29,97 @@ $header-background-color: #c0c0c0a8
     .fa-heart
         margin-left: 20px
         font-size: 2em
+        &:hover
+            color: #f44336
+        &:active
+            opacity: 0
 
     .fa-shopping-basket
         margin-left: 20px
         font-size: 2em
+        &:hover
+            color: #f44336
+        &:active
+            opacity: 0
+        
 
 .range
     height: 100%
-    margin-top: 40px
-    margin-bottom: 40px
+    margin:
+        top: 40px
+        bottom: 40px
+        left: 40px
+        right: 40px
+
     img[alt="carousel"]
         width: 750px
         height: 600px
+
+    .product
+        text-align: center
+
+    .nameOfProduct
+        text-align: center
+        font-size: 18px
+
+    img[alt="product"]
+        width: 240px
+        height: 240px
+
+.product-deal
+    .leftside
+        img[alt="bigProductImg"]
+            width: 100%
+    .rightside
+        text-align: center
+        .button_order_deal 
+            display: inline-block
+            margin:
+                top: 15px
+                bottom: 15px
+                left: 20px
+                right: 20px
+            box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35)
+            border-radius: 35px
+            background-color: #f44336
+            width: 100%
+            height: 14%
+        
+            .button_red_deal 
+                text-align: center
+                display: block
+                padding-top: 4%
+                text-decoration: none
+                color: #ffffff
+                font-size: 22px
+                font-weight: 700
+                line-height: 24.01px
+                text-transform: uppercase
+                letter-spacing: 4.4px
+            &:active 
+                box-shadow: none
+
+            &:hover 
+                color: black
+                text-decoration: underline
+        .price
+            // @extend %clearfix
+            text-align: center
+            .numprice
+                font:
+                    size: 50px
+                    weight: 700
+            .currancy
+                margin-left: 5px
+                font-size: 30px   
+
+        .desc_product_deal
+            margin-top: 50px
+            color: #212121
+            font-size: 16px
+            font-weight: 300
+            line-height: 24.01px
+            letter-spacing: 0.4px
 
 .clr 
     height: 75px
