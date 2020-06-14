@@ -5,124 +5,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/944df847d9.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/static/styles/style.css">
     <title>Магазин "Mixer"</title>
 </head>
 
 <body>
-    <div class=".container">
-        <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="home.html">
-                    <img src="img/logo.png" class="logo d-inline-block align-top" alt="logo" loading="lazy"><span
-                        class="navbar-brand-name mb-0 h2">Mixer</span></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+<div class=".container">
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="/static/img/logo.png" class="logo d-inline-block align-top" alt="logo" loading="lazy"><span
+                    class="navbar-brand-name mb-0 h2">Mixer</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link " href="catalog.html">Продукты <span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="home.html">Доставка <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacts.html">Контакты</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-1" type="search"
-                            placeholder="Введите название..." aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск товара</button>
-                    </form>
-                    <span class="badge badge-pill badge-danger">0</span>
-                    <div class="heart"><i class="far fa-heart"></i></div>
-                    <span class="badge badge-pill badge-danger">0</span>
-                    <div class="basket"><i class="fas fa-shopping-basket"></i></div>
-
-            </nav>
-        </header>
-        <div class="range clearfix">
-            <div class="row justify-content-md-center">
-                <div class="col"></div>
-                <div class="desc col-lg-3">
-                    <h3>Приветствуем Вас в&nbsp;нашем магазине!</h3>
-                    <p>Мixer&nbsp;&mdash; это магазин для профессионалов в&nbsp;кондитерской сфере, любителей готовить
-                        кулинарные шедевры и&nbsp;тех, кто только начинает развиваться в&nbsp;данном направлении. <br>
-                        Наша компания&nbsp;&mdash; это команда единомышленников, которые просто очень любят все, что
-                        связано с
-                        кондитерским искусством, ведь это так красиво и&nbsp;вкусно. Мы&nbsp;специализируемся
-                        на&nbsp;принципе высокого
-                        качества обслуживания. Нашей главной целью является внимательное и&nbsp;дружеское отношение
-                        к&nbsp;каждому
-                        клиенту! </p>
-                </div>
-                <div class="couresel col-lg-7">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="img/carousel1.jpg" class="d-block w-100" alt="carousel">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carousel2.webp" class="d-block w-100" alt="carousel">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carousel3.jpg" class="d-block w-100" alt="carousel">
-                            </div>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/catalog/">Каталог<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Доставка <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contacts/">Контакты</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-1" type="search"
+                           placeholder="Введите название..." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск товара</button>
+                </form>
+                <span class="badge badge-pill badge-danger">0</span>
+                <div class="heart"><i class="far fa-heart"></i></div>
+                <span class="badge badge-pill badge-danger">0</span>
+                <div class="basket"><i class="fas fa-shopping-basket"></i></div>
+            </div>
+        </nav>
+    </header>
+    <div class="range clearfix">
+        <div class="row justify-content-md-center">
+            <div class="col"></div>
+            <div class="desc col-lg-3">
+                <h3>Приветствуем Вас в&nbsp;нашем магазине!</h3>
+                <p>Мixer&nbsp;&mdash; это магазин для профессионалов в&nbsp;кондитерской сфере, любителей готовить
+                    кулинарные шедевры и&nbsp;тех, кто только начинает развиваться в&nbsp;данном направлении. <br>
+                    Наша компания&nbsp;&mdash; это команда единомышленников, которые просто очень любят все, что
+                    связано с
+                    кондитерским искусством, ведь это так красиво и&nbsp;вкусно. Мы&nbsp;специализируемся
+                    на&nbsp;принципе высокого
+                    качества обслуживания. Нашей главной целью является внимательное и&nbsp;дружеское отношение
+                    к&nbsp;каждому
+                    клиенту! </p>
+            </div>
+            <div class="couresel col-lg-7">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/static/img/carousel1.jpg" class="d-block w-100" alt="carousel">
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                            data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                            data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        <div class="carousel-item">
+                            <img src="/static/img/carousel2.webp" class="d-block w-100" alt="carousel">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/static/img/carousel3.jpg" class="d-block w-100" alt="carousel">
+                        </div>
                     </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                       data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                       data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
 
-                </div>
-                <div class="col"></div>
             </div>
-            <div class="clr clearfix"></div>
+            <div class="col"></div>
         </div>
+        <div class="clr clearfix"></div>
+    </div>
 
-        <div class="slider-footer">
-            <div class="row footer justify-content-center">
-                <div class="col-lg-4">
-                    <p class="copy">&copy;Магазин кондитерских ингредиентов MIXER 2020.</p>
-                </div>
-                <div class="social_links col-lg-4">
-                    <a href="" class="social_link"><i class="fab fa-facebook-square"></i> </a><a href="" class="social_link"><i
-                            class="fab fa-instagram"></i> </a><a href="" class="social_link"><i class="fab fa-pinterest-square"></i></a>
-                </div>
-                <div class="col-lg-4">
-                    <p class="terms">Доставка по всей России</p>
-                </div>
+    <div class="slider-footer">
+        <div class="row footer justify-content-center">
+            <div class="col-lg-4">
+                <p class="copy">&copy;Магазин кондитерских ингредиентов MIXER 2020.</p>
+            </div>
+            <div class="social_links col-lg-4">
+                <a href="" class="social_link"><i class="fab fa-facebook-square"></i> </a><a href=""
+                                                                                             class="social_link"><i
+                    class="fab fa-instagram"></i> </a><a href="" class="social_link"><i
+                    class="fab fa-pinterest-square"></i></a>
+            </div>
+            <div class="col-lg-4">
+                <p class="terms">Доставка по всей России</p>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
+    </script>
 </body>
 
 </html>

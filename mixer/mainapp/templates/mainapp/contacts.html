@@ -5,122 +5,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/944df847d9.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/static/styles/style.css">
     <title>Контакты "Mixer"</title>
 </head>
 
 <body>
-    <div class=".container">
-        <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="home.html">
-                    <img src="img/logo.png" class="logo d-inline-block align-top" alt="logo" loading="lazy"><span
-                        class="navbar-brand-name mb-0 h2">Mixer</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+<div class=".container">
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="/static/img/logo.png" class="logo d-inline-block align-top" alt="logo" loading="lazy"><span
+                    class="navbar-brand-name mb-0 h2">Mixer</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">
-                </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="catalog.html">Продукты <span class="sr-only">(current)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="home.html">Доставка <span class="sr-only">(current)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contacts.html">Контакты</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-1" type="search"
-                            placeholder="Введите название..." aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск товара</button>
-                    </form>
-                    <span class="badge badge-pill badge-danger">0</span>
-                    <div class="heart"><i class="far fa-heart"></i></div>
-                    <span class="badge badge-pill badge-danger">0</span>
-                    <div class="basket"><i class="fas fa-shopping-basket"></i></div>
-
-            </nav>
-        </header>
-        <div class="row justify-content-center contact-us">
-            <div class="col-md-5">
-                <form>
-                    <label for="exampleFormControlInput1">
-                        Со всеми вопросами и предложениями можете обращаться заполнив форму ниже, либо позвонив
-                        нам!</label>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" placeholder="Имя">
-                        </div>
-                        <div class="col--md-3">
-                            <input type="text" class="form-control" placeholder="Фамилия">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Ваш email</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="name@example.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Ваше обращение</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn">Отправить</button>
-                    <button type="clear" class="btn">Очистить</button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/catalog/">Каталог <span class="sr-only">(current)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Доставка <span class="sr-only">(current)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contacts/">Контакты</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-1" type="search"
+                           placeholder="Введите название..." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск товара</button>
                 </form>
+                <span class="badge badge-pill badge-danger">0</span>
+                <div class="heart"><i class="far fa-heart"></i></div>
+                <span class="badge badge-pill badge-danger">0</span>
+                <div class="basket"><i class="fas fa-shopping-basket"></i></div>
 
-            </div>
-            <div class="col-md-5 contacts-info">
-                <div class="address">
-                    <h3>Наш адрес:</h3>
-                    <p> г. Хабаровск, ул.Советская, д.1
-                        <br>тел. 8(495)456-78-99 </p>
+        </nav>
+    </header>
+    <div class="row justify-content-center contact-us">
+        <div class="col-md-5">
+            <form>
+                <label for="exampleFormControlInput1">
+                    Со всеми вопросами и предложениями можете обращаться заполнив форму ниже, либо позвонив
+                    нам!</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="Имя">
+                    </div>
+                    <div class="col--md-3">
+                        <input type="text" class="form-control" placeholder="Фамилия">
+                    </div>
                 </div>
-                <div class="map">
-                    <script type="text/javascript" charset="utf-8" async
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Ваш email</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                           placeholder="name@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Ваше обращение</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn">Отправить</button>
+                <button type="clear" class="btn">Очистить</button>
+            </form>
+
+        </div>
+        <div class="col-md-5 contacts-info">
+            <div class="address">
+                <h3>Наш адрес:</h3>
+                <p> г. Хабаровск, ул.Советская, д.1
+                    <br>тел. 8(495)456-78-99 </p>
+            </div>
+            <div class="map">
+                <script type="text/javascript" charset="utf-8" async
                         src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A859bba4535e1115efbeeb736309d25c51aec3dc868210897c0a57edf2127048f&amp;width=&amp;height=374&amp;lang=ru_RU&amp;scroll=true">
-                    </script>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
-
-    </div>
-    <div class="clr clearfix"></div>
-    </div>
-    <div class="slider-footer">
-        <div class="row footer justify-content-center">
-            <div class="col-lg-4">
-                <p class="copy">&copy;Магазин кондитерских ингредиентов MIXER 2020.</p>
-            </div>
-            <div class="social_links col-lg-4">
-                <a href="" class="social_link"><i class="fab fa-facebook-square"></i> </a><a href="" class="social_link"><i
-                        class="fab fa-instagram"></i> </a><a href="" class="social_link"><i class="fab fa-pinterest-square"></i></a>
-            </div>
-            <div class="col-lg-4">
-                <p class="terms">Доставка по всей России</p>
+                </script>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+
+
+</div>
+
+</div>
+<div class="clr clearfix"></div>
+</div>
+<div class="slider-footer">
+    <div class="row footer justify-content-center">
+        <div class="col-lg-4">
+            <p class="copy">&copy;Магазин кондитерских ингредиентов MIXER 2020.</p>
+        </div>
+        <div class="social_links col-lg-4">
+            <a href="" class="social_link"><i class="fab fa-facebook-square"></i> </a><a href="" class="social_link"><i
+                class="fab fa-instagram"></i> </a><a href="" class="social_link"><i class="fab fa-pinterest-square"></i></a>
+        </div>
+        <div class="col-lg-4">
+            <p class="terms">Доставка по всей России</p>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+</script>
 </body>
 
 </html>
