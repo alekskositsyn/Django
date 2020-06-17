@@ -1,5 +1,8 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{#{% block title %}#}
+{#    {{ block.super }} / try block.super#}
+{#{% endblock %}#}
 {% block container %}
     <div class="range clearfix">
         <div class="row justify-content-md-center">
@@ -14,7 +17,7 @@
                     на&nbsp;принципе высокого
                     качества обслуживания. Нашей главной целью является внимательное и&nbsp;дружеское отношение
                     к&nbsp;каждому
-                    клиенту! </p>
+                    клиенту!</p>
             </div>
             <div class="couresel col-lg-7">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -25,13 +28,13 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="/static/img/carousel1.jpg" class="d-block w-100" alt="carousel">
+                            <img src="{% static 'img/carousel1.jpg' %}" class="d-block w-100" alt="carousel">
                         </div>
                         <div class="carousel-item">
-                            <img src="/static/img/carousel2.webp" class="d-block w-100" alt="carousel">
+                            <img src="{% static 'img/carousel2.webp' %}" class="d-block w-100" alt="carousel">
                         </div>
                         <div class="carousel-item">
-                            <img src="/static/img/carousel3.jpg" class="d-block w-100" alt="carousel">
+                            <img src="{% static 'img/carousel3.jpg' %}" class="d-block w-100" alt="carousel">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"

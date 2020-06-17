@@ -1,36 +1,37 @@
+{% load static %}
 <header class="header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">
-                    <img src="/static/img/logo.png" class="logo d-inline-block align-top" alt="logo"
-                         loading="lazy"><span
-                        class="navbar-brand-name mb-0 h2">Mixer</span></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="{% static 'img/logo.png' %}" class="logo d-inline-block align-top" alt="logo"
+                 loading="lazy"><span
+                class="navbar-brand-name mb-0 h2">Mixer</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link " href="/catalog/">Каталог<span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Доставка <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contacts/">Контакты</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-1" type="search"
-                               placeholder="Введите название..." aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск товара</button>
-                    </form>
-                    <span class="badge badge-pill badge-danger">0</span>
-                    <div class="heart"><i class="far fa-heart"></i></div>
-                    <span class="badge badge-pill badge-danger">0</span>
-                    <div class="basket"><i class="fas fa-shopping-basket"></i></div>
-                </div>
-            </nav>
-        </header>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " href="/catalog/">Продукты<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Доставка <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contacts/">Контакты</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-1" type="search"
+                       placeholder="Введите название..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск товара</button>
+            </form>
+            <span class="badge badge-pill badge-danger">0</span>
+            <div class="heart"><i class="far fa-heart"></i></div>
+            <span class="badge badge-pill badge-danger">0</span>
+            <div class="basket"><i class="fas fa-shopping-basket"></i></div>
+        </div>
+    </nav>
+</header>

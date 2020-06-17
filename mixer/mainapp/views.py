@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 def home(request):
     context = {
-        'page_title': 'главная'
+        'page_title': 'главная "mixer"'
     }
     return render(request, 'mainapp/home.html', context)
 
