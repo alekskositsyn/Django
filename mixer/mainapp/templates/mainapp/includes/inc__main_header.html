@@ -1,7 +1,7 @@
 {% load static %}
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="{% url 'main:home' %}">
             <img src="{% static 'img/logo.png' %}" class="logo d-inline-block align-top" alt="logo"
                  loading="lazy"><span
                 class="navbar-brand-name mb-0 h2">Mixer</span></a>
@@ -12,15 +12,15 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link " href="/catalog/">Продукты<span
+                <li class="nav-item active">
+                    <a class=" nav-link " href="{% url 'main:catalog' %}">Продукты<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Доставка <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Доставка <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contacts/">Контакты</a>
+                    <a class="nav-link" href="{% url 'main:contacts' %}">Контакты</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
