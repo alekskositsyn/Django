@@ -2,9 +2,9 @@
 $menu-height: 75px  
 $header-background-color: #c0c0c0a8
 %clearfix
-  content: ""
-  display: table
-  clear: both
+    content: ""
+    display: table
+    clear: both
 
 .products-categories
     margin: 30px 30px 30px 30px
@@ -16,8 +16,12 @@ $header-background-color: #c0c0c0a8
         text-decoration: none
         &:hover
             text-decoration: none
-            
 
+.product
+    img
+        width: 70%
+        margin: 5px
+        
 .header
     height: $menu-height
     margin: 0 auto
@@ -26,6 +30,10 @@ $header-background-color: #c0c0c0a8
     .btn-outline-success
         color: black
         border-color: black
+        
+            
+           
+
 
     .navbar-brand-name
         margin-left: 10px
@@ -64,13 +72,16 @@ $header-background-color: #c0c0c0a8
 
 .products-categories
     margin-right: 50px
+
+
+
 .range
     height: 100%
-    margin:
-        top: 40px
-        bottom: 40px
-        left: 40px
-        right: 40px
+    margin: 
+    top: 40px
+    bottom: 40px
+    left: 40px
+    right: 40px
 
     img[alt="carousel"]
         width: 750px
@@ -89,13 +100,20 @@ $header-background-color: #c0c0c0a8
 
 .product-deal
     .leftside
+        text-align: center
+        margin: 
+            top: 30px
+            bottom: 70px
         img[alt="bigProductImg"]
             width: 70%
     .rightside
         text-align: center
+        margin: 
+            top: 30px
+            bottom: 70px
         .button_order_deal 
             display: inline-block
-            margin:
+            margin: 
                 top: 15px
                 bottom: 15px
                 left: 20px
@@ -103,7 +121,7 @@ $header-background-color: #c0c0c0a8
             box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35)
             border-radius: 35px
             background-color: #f44336
-            width: 100%
+            width: 50%
             height: 14%
         
         .button_red_deal 
@@ -127,9 +145,8 @@ $header-background-color: #c0c0c0a8
             // @extend %clearfix
             text-align: center
             .numprice
-                font:
-                    size: 50px
-                    weight: 700
+                font-size: 50px
+                
             .currancy
                 margin-left: 5px
                 font-size: 30px   
@@ -155,8 +172,8 @@ $header-background-color: #c0c0c0a8
         width: 100%
         background-color: #f7f7f7
         margin: 
-            left: 40px
-            right: 40px
+        left: 40px
+        right: 40px
     .copy 
         text-align: center
         color: #6c6c6c
@@ -186,18 +203,18 @@ $header-background-color: #c0c0c0a8
 
 .contact-us
     height: 100%
-    margin:
-        top: 40px
-        bottom: 40px
-        left: 40px
-        right: 40px
+    margin: 
+    top: 40px
+    bottom: 40px
+    left: 40px
+    right: 40px
     .btn
         color: #ffffff
         background-color: #f44336
         border: none
         box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35) 
         &:active 
-                box-shadow: none
+            box-shadow: none
 
         &:hover 
             color: rgb(224, 224, 224)

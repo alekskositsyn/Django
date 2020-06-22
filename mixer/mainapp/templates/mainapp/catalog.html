@@ -4,45 +4,14 @@
     {% include 'mainapp/includes/inc__products_categories.html' %}
     <div class="range clearfix">
         <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/coconut_strugjka.jpg' %}" alt="product"></a>
-                <div class="nameOfProduct">Кокосовая стружка
+            {% for product in products %}
+                <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
+                        src="/media/{{ product.image }}" alt="{{ product.name }}"></a>
+                    <div class="nameOfProduct">{{ product.name }}
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/il_pudra_sakharnaya_ultramelkaya_1_kg.jpg' %}" alt="product"></a>
-                <div class="nameOfProduct">Пудра сахарная(ультрамелкая)
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/mendalnaya_muka.jpg' %}" alt="product"></a>
-                <div class="nameOfProduct">Мендальная мука
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/mendalnie_lipestky.png' %}" alt="product"></a>
-                <div class="nameOfProduct">Мендальные липестки
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/suh_smes.jpg' %}" alt="product"></a>
-                <div class="nameOfProduct">Сухая смесь
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/cacaoPowder.jpg' %}" alt="product"></a>
-                <div class="nameOfProduct">Какао пудра
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/kakao_butter.jpg' %}" alt="product"></a>
-                <div class="nameOfProduct">Какао масло
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 product"><a href="/product/" class="linkBuyProduct"><img
-                    src="{% static 'img/posipka_shariky.jpg' %}" alt="product"></a>
-                <div class="nameOfProduct">Посыпка шарики</div>
-            </div>
+            {% endfor %}
         </div>
+
     </div>
 {% endblock %}

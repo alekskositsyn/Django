@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from mainapp.models import ProductCategory, Product
 
+
 def home(request):
     context = {
         'page_title': 'главная "mixer"'
@@ -28,7 +29,9 @@ def contacts(request):
 
 
 def product(request):
+    first_product = Product.objects.all()[0]
     context = {
-        'page_title': 'продукт'
+        'page_title': 'продукт',
+        'first_product': first_product,
     }
     return render(request, 'mainapp/product.html', context)
