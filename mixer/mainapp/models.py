@@ -14,7 +14,7 @@ class Product(models.Model):
                                  on_delete=models.CASCADE,
                                  verbose_name='категория продукта')
     name = models.CharField('имя продукта', max_length=128)
-    image = models.ImageField(upload_to='product_image', blank=True)
+    image = models.ImageField(upload_to='products_images', blank=True)
     short_desc = models.CharField(verbose_name='краткое описание продукта', max_length=64, blank=True)
     description = models.TextField(verbose_name='описание продукта', blank=True)
     price = models.DecimalField(verbose_name='цена продукта', max_digits=8, decimal_places=0, default=0)
