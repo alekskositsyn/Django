@@ -31,9 +31,9 @@ class Command(BaseCommand):
             category_name = product['category']
             # Получаем категорию по имени
             # _category = ProductCategory.objects.get(name=category_name)
-            # _category = ProductCategory.objects.filter(name=category_name).first()
+            _category = ProductCategory.objects.filter(name=category_name).first()
             # _category = list(ProductCategory.objects.filter(name=category_name))[0]
-            _category = ProductCategory.objects.get(name=category_name)  # .get() -> concrete object
+            # _category = ProductCategory.objects.get(name=category_name)  # .get() -> concrete object
             # Заменяем название категории объектом
             product['category'] = _category
             new_product = Product(**product)
@@ -43,4 +43,8 @@ class Command(BaseCommand):
         # if ShopUser.objects.filter(username='django').count() == 0:
         if not ShopUser.objects.filter(username='django').exists():
             # ShopUser.objects.create(username='django', email='admin@geekshop.local', password='geekbrains')
-            ShopUser.objects.create_superuser(username='django', email='admin@mixer.local', password='geekbrains')
+            ShopUser.objects.create_superuser(username='django',
+                                              email='admin@mixer.local',
+                                              password='geekbrains',
+                                              first_name='Admin'
+                                              )

@@ -46,6 +46,33 @@
 .header .active {
   border-bottom: 2px solid #000;
 }
+.header .user-icon {
+  margin-right: 10px;
+  margin-left: 5px;
+}
+.header .user-icon .user-entrance {
+  float: left;
+}
+.header .user-icon .user-entrance .name-user {
+  float: left;
+  margin-right: 10px;
+}
+.header .user-icon .user-entrance a {
+  text-decoration: none;
+  color: black;
+}
+.header .user-icon .user-entrance a:hover {
+  color: #f44336;
+}
+.header .user-icon .fa-user-o {
+  float: right;
+}
+.header .user-icon .fa-user-o:hover {
+  color: #f44336;
+}
+.header .user-icon .fa-user-o:active {
+  opacity: 0;
+}
 .header .fa-heart {
   margin-right: 10px;
   margin-left: 5px;

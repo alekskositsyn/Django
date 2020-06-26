@@ -12,13 +12,13 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-{#                {% for item in main_header_menu %}#}
-{#                    <li class="{% if request.resolver_match.url_name == item.href %} active {% endif %} nav-item">#}
-{#                        <a class=" nav-link "#}
-{#                           href="{% url 'main:'|add:item.href %}">{{ item.name }}<span применение шаблонного фильтра add#}
-{#                                class="sr-only">(current)</span></a>#}
-{#                    </li>#}
-{#                {% endfor %}#}
+                {#                {% for item in main_header_menu %}#}
+                {#                    <li class="{% if request.resolver_match.url_name == item.href %} active {% endif %} nav-item">#}
+                {#                        <a class=" nav-link "#}
+                {#                           href="{% url 'main:'|add:item.href %}">{{ item.name }}<span применение шаблонного фильтра add#}
+                {#                                class="sr-only">(current)</span></a>#}
+                {#                    </li>#}
+                {#                {% endfor %}#}
 
 
                 <li class="nav-item active">
@@ -32,15 +32,29 @@
                     <a class="nav-link" href="{% url 'main:contacts' %}">Контакты</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-1" type="search"
-                       placeholder="Введите название..." aria-label="Search">
-                <a class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск товара</a>
-            </form>
+            <div class="user-icon">
+                <div class="user-entrance">
+                    {% if user.is_authenticated %}
+                        <a class="name-user" href="{#% url 'auth:user_update' %#}" class="">
+                            {{ user.first_name|default:'пользователь'|title }}
+                        </a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'auth:logout' %}" class="">
+                            выход
+                        </a>
+                    {% else %}
+                        <a href="{% url 'auth:login' %}" class="">
+                            вход
+                        </a>
+                    {% endif %}
+                </div>
+                <!-- <i class="fa fa-user-o fa-2x" aria-hidden="true"></i>    -->
+            </div>
             <span class="badge badge-pill badge-danger">0</span>
-            <div class="heart"><i class="far fa-heart"></i></div>
+            <div class="heart"><i class="far fa-heart fa-2x"></i></div>
             <span class="badge badge-pill badge-danger">0</span>
-            <div class="basket"><i class="fas fa-shopping-basket"></i></div>
+            <div class="basket"><i class="fas fa-shopping-basket fa-2x"></i></div>
         </div>
     </nav>
 </header>
