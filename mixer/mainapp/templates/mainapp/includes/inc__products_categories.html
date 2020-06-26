@@ -2,7 +2,7 @@
 <div class="products-categories btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
     <button type="button" class="btn btn-secondary"><a href="#">Всё</a></button>
     {% for category in products_categories %}
-        <button type="button" class="btn btn-secondary"><a href="#">{{ category.name }}</a></button>
+        <a href="#" type="button" class="{% if request.resolver_match.url_name == item.href %} active {% endif %} btn btn-secondary">{{ category.name }}</a>
     {% endfor %}
 
 </div>

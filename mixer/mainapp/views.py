@@ -4,7 +4,7 @@ from mainapp.models import ProductCategory, Product
 
 def home(request):
     context = {
-        'page_title': 'главная "mixer"'
+        'page_title': 'главная "mixer"',
     }
     return render(request, 'mainapp/home.html', context)
 
@@ -35,3 +35,5 @@ def product(request):
         'first_product': first_product,
     }
     return render(request, 'mainapp/product.html', context)
+
+
