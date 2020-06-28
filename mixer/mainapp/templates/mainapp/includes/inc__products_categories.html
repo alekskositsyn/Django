@@ -1,8 +1,8 @@
 {% load static %}
 <div class="products-categories btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
-    <button type="button" class="btn btn-secondary"><a href="#">Всё</a></button>
+    <button type="button" class="{% if request.resolver_match.kwargs.pk == '0' %} active {% endif %} btn btn-secondary"><a href="{% url 'main:category_products' 0 %}">Все товары</a></button>
     {% for category in products_categories %}
-        <a href="#" type="button" class="{% if request.resolver_match.url_name == item.href %} active {% endif %} btn btn-secondary">{{ category.name }}</a>
+        <a href="{% url 'main:category_products' category.pk %}" type="button" class="{% if request.resolver_match.kwargs.pk|add:0 == category.pk %} active {% endif %} btn btn-secondary">{{ category.name }}</a>
     {% endfor %}
 
 </div>
