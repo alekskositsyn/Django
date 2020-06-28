@@ -7,6 +7,8 @@ from authapp.forms import ShopUserLoginForm
 
 from authapp.forms import ShopUserRegisterForm
 
+from authapp.forms import ShopUserUpdateForm
+
 
 def login(request):
     if request.method == 'POST':
@@ -46,3 +48,18 @@ def register(request):
         'form': form,
     }
     return render(request, 'authapp/register.html', context)
+
+
+def update(request):
+    if request.method == 'POST':
+        form = ShopUserUpdateForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('auth:update'))
+    else:
+        form = ShopUserUpdateForm(instance=request.user)
+    context = {
+        'title': 'Проверьте правильность заполнения данных',
+        'form': form,
+    }
+    return render(request, 'authapp/update.html', context)

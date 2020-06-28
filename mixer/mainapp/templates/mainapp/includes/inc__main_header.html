@@ -35,7 +35,7 @@
             <div class="user-icon">
                 <div class="user-entrance">
                     {% if user.is_authenticated %}
-                        <a class="name-user" href="{#% url 'auth:user_update' %#}" class="">
+                        <a class="name-user" href="{% url 'auth:update' %}" class="">
                             {{ user.first_name|default:'пользователь'|title }}
                         </a>
                     {% endif %}
