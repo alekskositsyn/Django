@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .products-categories {
   margin: 30px 30px 30px 30px;
   float: left;
@@ -12,6 +17,18 @@
   text-decoration: none;
 }
 
+.product {
+  margin-top: 10px;
+}
+.product .nameOfProduct {
+  color: black;
+}
+.product .linkBuyProduct {
+  display: block;
+}
+.product .linkBuyProduct:hover {
+  text-decoration: none;
+}
 .product img {
   width: 70%;
   margin: 5px;
@@ -20,6 +37,9 @@
 .header {
   height: 75px;
   margin: 0 auto;
+}
+.header nav {
+  z-index: 2;
 }
 .header .form-inline {
   margin-right: 10px;
