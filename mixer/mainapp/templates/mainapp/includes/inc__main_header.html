@@ -53,7 +53,15 @@
             </div>
             <span class="badge badge-pill badge-danger">0</span>
             <div class="heart"><i class="far fa-heart fa-2x"></i></div>
-            <span class="badge badge-pill badge-danger">0</span>
+            <a href="#" class="basket">
+                <span class="badge badge-pill badge-danger">
+                    {% if basket %}
+                        {{ basket.0.total_quantity }}
+                    {% else %}
+                        {{ '0' }}
+                    {% endif %}
+                </span>
+            </a>
             <div class="basket"><i class="fas fa-shopping-basket fa-2x"></i></div>
         </div>
     </nav>

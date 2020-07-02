@@ -1,0 +1,17 @@
+{% load static %}
+<div class="col-lg-8 range products">
+    <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 ">
+                <div class="product border border-dark rounded-lg m-1 p-1">
+                    <a href="#" class="linkBuyProduct"><img
+                            src="/media/{{ hot_product.image }}" alt="{{ hot_product.name }}">
+                        <div class="nameOfProduct">{{ hot_product.name }}
+                        </div>
+                    </a>
+                    <div class="numprice">{{ hot_product.price }}<i class="currancy fas fa-ruble-sign"></i></div>
+                    <a class="btn btn-danger" href="{% url 'basket:add_product' hot_product.pk %}">В корзину</a>
+                </div>
+            </div>
+    </div>
+
+</div>

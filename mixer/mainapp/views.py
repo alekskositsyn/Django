@@ -1,28 +1,41 @@
+import random
+
 from django.shortcuts import render, get_object_or_404
 from mainapp.models import ProductCategory, Product
+
+
+def get_hot_product():
+    return random.choice(Product.objects.all())
+
+def get_basket(request):
+    return request.user.is_authenticated and request.user.basket.all() or []
+
+
+def get_menu():
+    return ProductCategory.objects.all()
 
 
 def home(request):
     context = {
         'page_title': 'главная "mixer"',
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/home.html', context)
 
 
 def catalog(request):
-    categories = ProductCategory.objects.all()
     products = Product.objects.all()
 
     context = {
         'page_title': 'каталог',
-        'products_categories': categories,
+        'products_categories': get_menu(),
         'products': products,
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/catalog.html', context)
 
 
 def category_products(request, pk):
-    categories = ProductCategory.objects.all()
     if pk == '0':
         category = {'pk': 0, 'name': 'все'}
         products = Product.objects.all()
@@ -32,24 +45,31 @@ def category_products(request, pk):
 
     context = {
         'page_title': 'продукты по категории',
-        'products_categories': categories,
+        'products_categories': get_menu(),
         'products': products,
         'category': category,
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/category_products.html', context)
 
 
 def contacts(request):
     context = {
-        'page_title': 'контакты'
+        'page_title': 'контакты',
+        'basket': get_basket(request),
     }
     return render(request, 'mainapp/contacts.html', context)
 
 
-def product(request):
-    first_product = Product.objects.all()[0]
+def product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+
     context = {
-        'page_title': 'продукт',
-        'first_product': first_product,
+        'page_title': 'каталог',
+        'categories': get_menu(),
+        'category': product.category,
+        'basket': get_basket(request),
+        'product': product,
+        'hot_product': get_hot_product,
     }
     return render(request, 'mainapp/product.html', context)
