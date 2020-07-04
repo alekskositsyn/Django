@@ -7,6 +7,8 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from mainapp.models import Product
 
+from mixer.settings import LOGIN_URL
+
 
 @login_required
 def index(request):
@@ -19,8 +21,8 @@ def index(request):
 
 @login_required
 def add_product(request, pk):
-    if 'login' in request.META.get('HTTP_REFERER'):
-        return HttpResponseRedirect(reverse('main:product', args=[pk]))
+    if LOGIN_URL in request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(reverse('main:product', kwargs={'pk':pk}))
     product = get_object_or_404(Product, pk=pk)
     basket = Basket.objects.filter(user=request.user, product=product).first()
     # basket = request.user.basket_set.filter(product=pk).first()

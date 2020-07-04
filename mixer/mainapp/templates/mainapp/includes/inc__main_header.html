@@ -39,9 +39,9 @@
                             {{ user.first_name|default:'пользователь'|title }}
                         </a>
                     {% endif %}
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'auth:logout' %}" class="">
-                            выход
+                    {% if user.is_superuser %}
+                        <a class="btn btn-danger" href="{% url 'my_admin:index' %}" class="">
+                            админка
                         </a>
                     {% else %}
                         <a href="{% url 'auth:login' %}" class="">
@@ -62,7 +62,7 @@
                     {% endif %}
                 </span>
             </a>
-            <div class="basket"><a href="{% url 'basket:index' %}"><i class="fas fa-shopping-basket fa-2x"></i></a>
+            <div class="basket "><a class="btn" href="{% url 'basket:index' %}"><i class="fas fa-shopping-basket fa-2x"></i></a>
             </div>
         </div>
     </nav>
