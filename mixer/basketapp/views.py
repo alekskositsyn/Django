@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 
 from basketapp.models import Basket
+from django.template.loader import render_to_string
 from django.urls import reverse
 from mainapp.models import Product
 
@@ -43,7 +44,25 @@ def delete_product(request, pk):
 @login_required
 def change(request, pk, quantity):
     if request.is_ajax():
-        print('ajax', pk, quantity)
-        return JsonResponse({
-            'status': True,
-        })
+        basket = get_object_or_404(Basket, pk=pk)
+        if quantity <= 0:
+            basket.delete()
+        else:
+            basket.quantity = quantity
+            basket.save()
+            print('ajax', pk, quantity)
+            # basket_items = Basket.objects.filter(user=request.user). \
+            #     order_by('product__category')
+            context = {
+                'basket': request.user.basket.all()
+
+            }
+            result = render_to_string('basketapp/includes/inc__basket_list.html', context)
+
+            return JsonResponse({'result': result})
+
+            # return JsonResponse({
+            #     'total_cost': basket.total_cost,
+            #     'total_quantity': basket.quantity,
+            #     'product_cost': basket.product_cost,
+            # })

@@ -8,6 +8,7 @@ window.onload = function () {
             url: '/basket/change/' + event.target.name + '/quantity/' + event.target.value + '/',
             success: function (data) {
                 console.log(data)
+                $('.basket_list').html(data.result);
             }
         });
 
