@@ -22,7 +22,7 @@ def index(request):
 @login_required
 def add_product(request, pk):
     if LOGIN_URL in request.META.get('HTTP_REFERER'):
-        return HttpResponseRedirect(reverse('main:product', kwargs={'pk':pk}))
+        return HttpResponseRedirect(reverse('main:product', kwargs={'pk': pk}))
     product = get_object_or_404(Product, pk=pk)
     basket = Basket.objects.filter(user=request.user, product=product).first()
     # basket = request.user.basket_set.filter(product=pk).first()
@@ -59,7 +59,10 @@ def change(request, pk, quantity):
                 'basket': request.user.basket.all()
 
             }
-            result = render_to_string('basketapp/includes/inc__basket_list.html', context)
+            result = render_to_string('basketapp/includes/inc__basket_list.html',
+                                      context,
+                                      request=request
+                                      )
 
             return JsonResponse({'result': result})
 
