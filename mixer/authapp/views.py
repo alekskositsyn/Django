@@ -11,6 +11,8 @@ from authapp.forms import ShopUserUpdateForm
 
 
 def login(request):
+    # next = request.GET['next'] if 'next' in request.GET.keys() else ''
+    next = request.GET.get('next', '')
     if request.method == 'POST':
         form = ShopUserLoginForm(data=request.POST)
         if form.is_valid():
@@ -19,13 +21,17 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('main:home'))
+                if 'next' in request.POST.keys():
+                    return HttpResponseRedirect(request.POST['next'])
+                else:
+                    return HttpResponseRedirect(reverse('main:home'))
     else:
         form = ShopUserLoginForm()
     # form = ShopUserLoginForm()
     context = {
         'title': 'вход в ситему',
         'form': form,
+        'next': next,
     }
     return render(request, 'authapp/login.html', context)
 

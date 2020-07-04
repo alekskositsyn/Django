@@ -5,7 +5,10 @@ from mainapp.models import ProductCategory, Product
 
 
 def get_hot_product():
-    return random.choice(Product.objects.all())
+    hot_product_pk = random.choice(Product.objects.values_list('pk', flat=True))
+    hot_product = Product.objects.get(pk=hot_product_pk)
+    return hot_product
+
 
 def get_basket(request):
     return request.user.is_authenticated and request.user.basket.all() or []
@@ -64,6 +67,8 @@ def contacts(request):
 def product(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
+    same_product = get_hot_product().category.product_set.exclude(pk=get_hot_product().pk)
+
     context = {
         'page_title': 'каталог',
         'categories': get_menu(),
@@ -71,5 +76,6 @@ def product(request, pk):
         'basket': get_basket(request),
         'product': product,
         'hot_product': get_hot_product,
+        'same_product': same_product,
     }
     return render(request, 'mainapp/product.html', context)
