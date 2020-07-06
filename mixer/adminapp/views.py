@@ -94,7 +94,20 @@ def categories(request):
 
 
 def category_create(request):
-    pass
+    if request.method == 'POST':
+        category_form = ProductCategoryUpdateForm(request.POST, request.FILES)
+        if category_form.is_valid():
+            category_form.save()
+            return HttpResponseRedirect(reverse('my_admin:categories'))
+    else:
+        category_form = ProductCategoryUpdateForm()
+
+    context = {
+        'title': 'категории/создание',
+        'form': category_form
+    }
+
+    return render(request, 'adminapp/category_update.html', context)
 
 
 @user_passes_test(lambda x: x.is_superuser)
@@ -117,7 +130,18 @@ def category_update(request, pk):
 
 
 def category_delete(request, pk):
-    pass
+    category = get_object_or_404(ProductCategory, pk=pk)
+
+    if request.method == 'POST':
+        category.is_active = False
+        category.save()
+        return HttpResponseRedirect(reverse('my_admin:categories'))
+
+    context = {
+        'title': 'категории/удаление',
+        'category_to_delete': category,
+    }
+    return render(request, 'adminapp/category_delete.html', context)
 
 
 @user_passes_test(lambda x: x.is_superuser)
