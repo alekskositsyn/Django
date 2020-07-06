@@ -8,7 +8,7 @@
     <div class="user_delete">
         Уверены, что хотите удалить <b>{{ category_to_delete.name }}
         {% if category_to_delete.description %}
-            ({{ category_to_delete.description|title }}
+            ({{ category_to_delete.description|capfirst }}
         {% endif %}</b>?
         <form method="post">
             {% csrf_token %}

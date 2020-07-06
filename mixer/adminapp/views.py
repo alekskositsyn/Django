@@ -145,6 +145,7 @@ def category_update(request, pk):
     return render(request, 'adminapp/category_update.html', context)
 
 
+@user_passes_test(lambda x: x.is_superuser)
 def category_delete(request, pk):
     category = get_object_or_404(ProductCategory, pk=pk)
 
@@ -174,3 +175,17 @@ def products(request, pk):
     return render(request, 'adminapp/products.html', content)
 
 
+def product_create(request, pk):
+    pass
+
+
+def item_products(request, pk):
+    pass
+
+
+def product_update(request, pk):
+    pass
+
+
+def product_delete(request, pk):
+    pass
