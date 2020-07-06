@@ -14,6 +14,9 @@
                     <a href="{% url 'my_admin:user_update' shop_user.pk %}" class="btn btn-primary">
                         редактировать
                     </a>
+                    <a href="{% url 'my_admin:user_restore' shop_user.pk %}" class="btn btn-success">
+                        восстановить
+                    </a>
                     <a href="{% url 'my_admin:user_delete' shop_user.pk %}" class="btn btn-danger">
                         удалить
                     </a>

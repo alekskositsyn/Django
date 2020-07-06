@@ -82,6 +82,22 @@ def user_delete(request, pk):
 
 
 @user_passes_test(lambda x: x.is_superuser)
+def user_restore(request, pk):
+    user = get_object_or_404(ShopUser, pk=pk)
+
+    if request.method == 'POST':
+        user.is_active = True
+        user.save()
+        return HttpResponseRedirect(reverse('my_admin:index'))
+
+    context = {
+        'title': 'пользователи/восстановление',
+        'user_to_restore': user,
+    }
+    return render(request, 'adminapp/user_restore.html', context)
+
+
+@user_passes_test(lambda x: x.is_superuser)
 def categories(request):
     categories_list = ProductCategory.objects.all()
 
@@ -158,17 +174,3 @@ def products(request, pk):
     return render(request, 'adminapp/products.html', content)
 
 
-def product_create(request, pk):
-    pass
-
-
-def item_products(request, pk):
-    pass
-
-
-def product_update(request, pk):
-    pass
-
-
-def product_delete(request, pk):
-    pass
