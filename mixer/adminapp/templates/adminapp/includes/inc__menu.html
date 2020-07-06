@@ -1,12 +1,12 @@
-<ul class="menu">
-    <li>
-        <a href="{% url 'main:home' %}">на сайт</a>
+<ul class="nav menu">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'main:home' %}">на сайт</a>
     </li>
-    <li>
-        <a href="{% url 'my_admin:index' %}">пользователи</a>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'my_admin:index' %}">пользователи</a>
     </li>
-    <li>
-        <a href="{#% url 'myadmin:productcategories' %#}">
+    <li class="nav-item">
+        <a class="nav-link" href="{#% url 'myadmin:productcategories' %#}">
             категории
             {% if category %}
                 : {{ category.name }}

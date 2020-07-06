@@ -8,7 +8,7 @@
         </a>
         {% for shop_user in object_list %}
             <div class="row user_record {% if not shop_user.is_active %}not_active{% endif %}">
-                <img src="/media/{{ shop_user.avatar }}" alt="{{ shop_user.username }}">
+                <img src="/media/{{ shop_user.avatar|default:'users_avatar/noimage2.png' }}" alt="{{ shop_user.username }}">
                 <div class="col-lg-2 user_role">
                     {% if shop_user.is_superuser %}администратор{% else %}пользователь{% endif %}
                     <a href="{% url 'my_admin:user_update' shop_user.pk %}" class="btn btn-primary">
@@ -19,12 +19,12 @@
                     </a>
                 </div>
                 <div class="col-lg-2-lg-2 user_name">
-                    <p><strong>{{ shop_user.username }}</strong></p>
+                    <p>LOGIN: <strong>{{ shop_user.username }}</strong></p>
                     <p>
                         {% if shop_user.first_name %}
-                            <b>{{ shop_user.first_name|title }}</b>
+                            <p>ИМЯ: {{ shop_user.first_name|title }}</p>
                             {% if shop_user.last_name %}
-                                <p>{{ shop_user.last_name|title }}</p>
+                                <p>ФАМИЛИЯ: {{ shop_user.last_name|title }}</p>
                             {% endif %}
                         {% endif %}
                     </p>

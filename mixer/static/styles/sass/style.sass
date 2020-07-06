@@ -1,10 +1,13 @@
 // $font-stack: Helvetica, sans-serif
+@import "_header"
+@import "_admin"
+@import "_basket"
+
 *
     margin: 0
     padding: 0
 
-$menu-height: 75px  
-$header-background-color: #c0c0c0a8
+
 %clearfix
     content: ""
     display: table
@@ -35,89 +38,16 @@ $header-background-color: #c0c0c0a8
         width: 70%
         margin: 5px
         
-.header
-    height: $menu-height
-    margin: 0 auto
-    nav
-        z-index: 2
-    .form-inline
-        margin-right: 10px
-    .btn-outline-success
-        color: black
-        border-color: black
-
-    .navbar-brand-name
-        margin-left: 10px
-        padding-top: 10px
-
-    img[alt='logo'] 
-        margin-left: 10px
-        width: 45px
-        height: 45px
-
-    .nav-item
-        border-bottom: 2px solid #0000005b
-        &:hover
-            border-bottom: 2px solid #000
-   
-    .active
-        border-bottom: 2px solid #000
-
-    
-
-    .user-icon
-        margin-right: 10px
-        margin-left: 5px
-        .user-entrance
-            float: left
-            .name-user
-                float: left
-                margin-right: 10px
-
-            a
-                text-decoration: none
-                color: black
-                &:hover
-                    color: #f44336
-        
-        .fa-user-o
-            float: right
-            &:hover
-                color: #f44336
-            &:active
-                opacity: 0
-
-    .fa-heart
-        margin-right: 10px
-        margin-left: 5px
-        font-size: 2em
-        &:hover
-            color: #f44336
-        &:active
-            opacity: 0
-
-    .fa-shopping-basket
-        margin-right: 10px
-        margin-left: 5px
-        font-size: 2em
-        &:hover
-            color: #f44336
-        &:active
-            opacity: 0
-        
-
 .products-categories
-    margin-right: 50px
-
-
+    margin-right: 55px
 
 .range
     height: 100%
     margin: 
-        top: 40px
-        bottom: 40px
-        left: 40px
-        right: 40px
+    top: 40px
+    bottom: 40px
+    left: 40px
+    right: 40px
 
     img[alt="carousel"]
         width: 750px
@@ -138,22 +68,22 @@ $header-background-color: #c0c0c0a8
     .leftside
         text-align: center
         margin: 
-            top: 30px
-            bottom: 70px
+        top: 30px
+        bottom: 70px
         img[alt="bigProductImg"]
             width: 70%
     .rightside
         text-align: center
         margin: 
-            top: 30px
-            bottom: 70px
+        top: 30px
+        bottom: 70px
         .button_order_deal 
             display: inline-block
             margin: 
-                top: 15px
-                bottom: 15px
-                left: 20px
-                right: 20px
+            top: 15px
+            bottom: 15px
+            left: 20px
+            right: 20px
             box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35)
             border-radius: 35px
             background-color: #f44336
@@ -208,8 +138,8 @@ $header-background-color: #c0c0c0a8
         width: 100%
         background-color: #f7f7f7
         margin: 
-            left: 40px
-            right: 40px
+        left: 40px
+        right: 40px
     .copy 
         text-align: center
         color: #6c6c6c
@@ -241,10 +171,10 @@ $header-background-color: #c0c0c0a8
 .contact-us
     height: 100%
     margin: 
-        top: 40px
-        bottom: 40px
-        left: 40px
-        right: 40px
+    top: 40px
+    bottom: 40px
+    left: 40px
+    right: 40px
     .btn
         color: #ffffff
         background-color: #f44336
