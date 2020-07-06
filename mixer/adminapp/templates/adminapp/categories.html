@@ -3,12 +3,12 @@
 
 {% block container %}
     <div class="categories_list">
-            <a class="btn btn-danger new_category" href={% url 'adminapp:category_create' %}>
-                новая категория
-            </a>
+        <a class="btn btn-danger new_category" href={% url 'adminapp:category_create' %}>
+            новая категория
+        </a>
 
         {% for category in categories %}
-            <div class="category_record">
+            <div class="category_record {% if not category.is_active %}not_active{% endif %}">
                 <div class="category_name">
                     {{ category.name|capfirst }}
                 </div>

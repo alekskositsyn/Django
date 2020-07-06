@@ -13,6 +13,8 @@ from mainapp.models import ProductCategory
 
 from mainapp.models import Product
 
+from adminapp.forms import ProductCategoryUpdateForm
+
 
 @user_passes_test(lambda x: x.is_superuser)
 def index(request):
@@ -35,9 +37,10 @@ def user_create(request):
     else:
         user_form = AdminShopUserCreatForm()
 
-    context = {'title': 'пользователи/создание',
-               'form': user_form,
-               }
+    context = {
+        'title': 'пользователи/создание',
+        'form': user_form,
+    }
 
     return render(request, 'adminapp/user_update.html', context)
 
@@ -94,8 +97,23 @@ def category_create(request):
     pass
 
 
+@user_passes_test(lambda x: x.is_superuser)
 def category_update(request, pk):
-    pass
+    category = get_object_or_404(ProductCategory, pk=pk)
+    if request.method == 'POST':
+        category_form = ProductCategoryUpdateForm(request.POST, request.FILES, instance=category)
+        if category_form.is_valid():
+            category_form.save()
+            return HttpResponseRedirect(reverse('my_admin:categories'))
+    else:
+        category_form = ProductCategoryUpdateForm(instance=category)
+
+    context = {
+        'title': 'категории/редактирование',
+        'form': category_form
+    }
+
+    return render(request, 'adminapp/category_update.html', context)
 
 
 def category_delete(request, pk):
