@@ -1,6 +1,6 @@
 .header {
   height: 75px;
-  margin: 0 auto;
+  margin-bottom: 35px;
 }
 
 .header nav {
@@ -39,9 +39,8 @@
   border-bottom: 2px solid #000;
 }
 
-.header .user-icon {
-  margin-right: 10px;
-  margin-left: 5px;
+.header .user-entrance a {
+  margin-right: 5px;
 }
 
 .header .user-icon .user-entrance {
@@ -50,28 +49,6 @@
 
 .header .user-icon .user-entrance .name-user {
   float: left;
-  margin-right: 10px;
-}
-
-.header .user-icon .user-entrance a {
-  text-decoration: none;
-  color: black;
-}
-
-.header .user-icon .user-entrance a:hover {
-  color: #f44336;
-}
-
-.header .user-icon .fa-user-o {
-  float: right;
-}
-
-.header .user-icon .fa-user-o:hover {
-  color: #f44336;
-}
-
-.header .user-icon .fa-user-o:active {
-  opacity: 0;
 }
 
 .header .fa-heart {
@@ -219,7 +196,6 @@
 }
 
 .products-categories {
-  margin: 30px 30px 30px 30px;
   float: left;
 }
 
@@ -235,7 +211,8 @@
 }
 
 .product {
-  margin-top: 10px;
+  text-align: center;
+  height: 270px;
 }
 
 .product .nameOfProduct {
@@ -253,10 +230,6 @@
 .product img {
   width: 70%;
   margin: 5px;
-}
-
-.products-categories {
-  margin-right: 55px;
 }
 
 .range {
@@ -404,6 +377,7 @@
 
 .slider-footer .social_links {
   text-align: center;
+  margin-top: -12px;
 }
 
 .slider-footer .social_link {

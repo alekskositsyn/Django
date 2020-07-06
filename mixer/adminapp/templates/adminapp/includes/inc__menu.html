@@ -6,7 +6,7 @@
         <a class="nav-link" href="{% url 'my_admin:index' %}">пользователи</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{#% url 'myadmin:productcategories' %#}">
+        <a class="nav-link" href="{% url 'my_admin:categories' %}">
             категории
             {% if category %}
                 : {{ category.name }}

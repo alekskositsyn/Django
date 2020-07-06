@@ -9,6 +9,10 @@ from adminapp.forms import AdminShopUserCreatForm
 
 from adminapp.forms import AdminShopUserUpdateForm
 
+from mainapp.models import ProductCategory
+
+from mainapp.models import Product
+
 
 @user_passes_test(lambda x: x.is_superuser)
 def index(request):
@@ -36,6 +40,7 @@ def user_create(request):
                }
 
     return render(request, 'adminapp/user_update.html', context)
+
 
 @user_passes_test(lambda x: x.is_superuser)
 def user_update(request, pk):
@@ -73,4 +78,55 @@ def user_delete(request, pk):
     return render(request, 'adminapp/user_delete.html', context)
 
 
+@user_passes_test(lambda x: x.is_superuser)
+def categories(request):
+    categories_list = ProductCategory.objects.all()
 
+    content = {
+        'title': 'админка/категории',
+        'categories': categories_list,
+    }
+
+    return render(request, 'adminapp/categories.html', content)
+
+
+def category_create(request):
+    pass
+
+
+def category_update(request, pk):
+    pass
+
+
+def category_delete(request, pk):
+    pass
+
+
+@user_passes_test(lambda x: x.is_superuser)
+def products(request, pk):
+    category = get_object_or_404(ProductCategory, pk=pk)
+    products_list = Product.objects.filter(category__pk=pk).order_by('name')
+
+    content = {
+        'title': 'админка/продукт',
+        'category': category,
+        'products': products_list,
+    }
+
+    return render(request, 'adminapp/products.html', content)
+
+
+def product_create(request, pk):
+    pass
+
+
+def item_products(request, pk):
+    pass
+
+
+def product_update(request, pk):
+    pass
+
+
+def product_delete(request, pk):
+    pass

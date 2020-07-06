@@ -1,0 +1,40 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block container %}
+    <div class="basket_list products_list">
+        <a class="btn btn-danger new_product" href={% url 'adminapp:product_create' category.pk %}>
+            новый продукт
+        </a>
+        {% for product in products %}
+            <div class="basket_record product_record">
+                <img class="rounded border"
+                     src="/media/{{ product.image|default:'products_images/noimage2.png' }}"
+                     alt="{{ product.name }}">
+                <span class="product_name">
+                    {{ product.name|title }}
+                </span>
+                <span class="product_desc">
+                    {{ product.short_desc|title }}
+                </span>
+                <div class="summary">
+                    <span><b>цена</b></span>
+                    <span>{{ product.price }} руб</span>
+                    <span><b>количество</b></span>
+                    <span>{{ product.quantity }}</span>
+                </div>
+                <div class="product_actions">
+                    <a class="btn btn-outline-dark" href={% url 'adminapp:item_products' product.pk %}>
+                        подробнее
+                    </a>
+                    <a class="btn btn-outline-dark" href={% url 'adminapp:product_update' product.pk %}>
+                        редактировать
+                    </a>
+                    <a class="btn btn-danger" href={% url 'adminapp:product_delete' product.pk %}>
+                        удалить
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
