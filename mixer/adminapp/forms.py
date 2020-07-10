@@ -6,6 +6,8 @@ from authapp.models import ShopUser
 
 from mainapp.models import ProductCategory
 
+from mainapp.models import Product
+
 
 class AdminShopUserCreatForm(UserCreationForm):
     class Meta:
@@ -52,7 +54,7 @@ class AdminShopUserUpdateForm(UserChangeForm):
         return data
 
 
-class ProductCategoryUpdateForm(forms.ModelForm):
+class AdminProductCategoryUpdateForm(forms.ModelForm):
     class Meta:
         model = ProductCategory
         fields = '__all__'
@@ -62,3 +64,14 @@ class ProductCategoryUpdateForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
+
+class AdminProductUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+

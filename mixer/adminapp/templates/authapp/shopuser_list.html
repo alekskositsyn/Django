@@ -1,5 +1,6 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 
 {% block container %}
     <div class=" users_list">
@@ -8,18 +9,22 @@
         </a>
         {% for shop_user in object_list %}
             <div class="row user_record {% if not shop_user.is_active %}not_active{% endif %}">
-                <img src="/media/{{ shop_user.avatar|default:'users_avatar/noimage2.png' }}" alt="{{ shop_user.username }}">
+                <img src="{{ shop_user.avatar|media_folder_users }}"
+                     alt="{{ shop_user.username }}">
                 <div class="col-lg-2 user_role">
                     {% if shop_user.is_superuser %}администратор{% else %}пользователь{% endif %}
                     <a href="{% url 'my_admin:user_update' shop_user.pk %}" class="btn btn-primary">
                         редактировать
                     </a>
-                    <a href="{% url 'my_admin:user_restore' shop_user.pk %}" class="btn btn-success">
-                        восстановить
-                    </a>
-                    <a href="{% url 'my_admin:user_delete' shop_user.pk %}" class="btn btn-danger">
-                        удалить
-                    </a>
+                    {% if shop_user.is_active %}
+                        <a href="{% url 'my_admin:user_delete' shop_user.pk %}" class="btn btn-danger">
+                            удалить
+                        </a>
+                    {% else %}
+                        <a href="{% url 'my_admin:user_restore' shop_user.pk %}" class="btn btn-success">
+                            восстановить
+                        </a>
+                    {% endif %}
                 </div>
                 <div class="col-lg-2-lg-2 user_name">
                     <p>LOGIN: <strong>{{ shop_user.username }}</strong></p>
