@@ -6,12 +6,12 @@
 
 {% block container %}
     <div class="user_delete">
-        Уверены, что хотите удалить продукт <b>{{ object.name }}</b>?
+        Уверены, что хотите восстановить продукт <b>{{ object.name }}</b>?
         <form method="post">
             {% csrf_token %}
-            <input class="btn btn-danger" type="submit" value="удалить">
+            <input class="btn btn-danger" type="submit" value="восстановить">
         </form>
-        <a href="{% url 'my_admin:category_products' object.category.pk %}"
+        <a href="{% url 'adminapp:category_products' object.pk%}"
            class="btn btn-success">
             отмена
         </a>

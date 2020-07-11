@@ -65,6 +65,7 @@ class AdminProductCategoryUpdateForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
 
+
 class AdminProductUpdateForm(forms.ModelForm):
     class Meta:
         model = Product
@@ -74,4 +75,3 @@ class AdminProductUpdateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
-
