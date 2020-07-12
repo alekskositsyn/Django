@@ -6,10 +6,10 @@
 
 {% block container %}
     <div class="user_delete">
-        Уверены, что хотите удалить категорию <b>{{ object.name }}</b>?
+        Уверены, что хотите {% if object.is_active %} удалить {% else %} восстановить {% endif %} категорию <b>{{ object.name }}</b>?
         <form method="post">
             {% csrf_token %}
-            <input class="btn btn-danger" type="submit" value="удалить">
+            <input class="btn btn-danger" type="submit" value="{% if object.is_active %} удалить {% else %} восстановить {% endif %}">
         </form>
         <a href="{% url 'adminapp:categories' %}" class="btn btn-success">
             отмена

@@ -14,16 +14,6 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from mainapp.models import ProductCategory, Product
 
 
-# @user_passes_test(lambda x: x.is_superuser)
-# def index(request):
-#     users_list = ShopUser.objects.all().order_by('-is_active', '-is_superuser', '-is_staff', 'username')
-#     context = {
-#         'title': 'админка/пользователи',
-#         'object_list': users_list,
-#     }
-#     return render(request, 'adminapp/shopuser_list.html', context)
-
-
 class SuperUserOnlyMixin:
     @method_decorator(user_passes_test(lambda x: x.is_superuser))
     def dispatch(self, request, *args, **kwargs):
@@ -47,23 +37,6 @@ class UsersListView(SuperUserOnlyMixin, PageTitleMixin, ListView):
     # @method_decorator(user_passes_test(lambda u: u.is_superuser))
     # def dispatch(self, *args, **kwargs):
     #     return super().dispatch(*args, **kwargs)
-
-
-# def user_create(request):
-#     if request.method == 'POST':
-#         user_form = AdminShopUserCreatForm(request.POST, request.FILES)
-#         if user_form.is_valid():
-#             user_form.save()
-#             return HttpResponseRedirect(reverse('adminapp:users'))
-#     else:
-#         user_form = AdminShopUserCreatForm()
-#
-#     context = {
-#         'title': 'пользователи/создание',
-#         'form': user_form,
-#     }
-#
-#     return render(request, 'adminapp/templates/authapp/shopuser_form.html', context)
 
 
 class UserCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
@@ -91,68 +64,15 @@ class UserDeleteView(SuperUserOnlyMixin, DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-# @user_passes_test(lambda x: x.is_superuser)
-# def user_update(request, pk):
-#     user = get_object_or_404(ShopUser, pk=pk)
-#     if request.method == 'POST':
-#         user_form = AdminShopUserUpdateForm(request.POST, request.FILES, instance=user)
-#         if user_form.is_valid():
-#             user_form.save()
-#             return HttpResponseRedirect(reverse('my_admin:index'))
-#     else:
-#         user_form = AdminShopUserUpdateForm(instance=user)
-#
-#     context = {
-#         'title': 'пользователи/редактирование',
-#         'form': user_form
-#     }
-#
-#     return render(request, 'adminapp/templates/authapp/shopuser_form.html', context)
+class UserRestoreView(SuperUserOnlyMixin, DeleteView):
+    model = ShopUser
+    success_url = reverse_lazy('adminapp:users')
 
-
-# @user_passes_test(lambda x: x.is_superuser)
-# def user_delete(request, pk):
-#     user = get_object_or_404(ShopUser, pk=pk)
-#     # user.delete()  # not good
-#
-#     if request.method == 'POST':
-#         user.is_active = False
-#         user.save()
-#         return HttpResponseRedirect(reverse('my_admin:index'))
-#
-#     context = {
-#         'title': 'пользователи/удаление',
-#         'user_to_delete': user,
-#     }
-#     return render(request, 'adminapp/shopuser_confirm_delete.html', context)
-
-
-@user_passes_test(lambda x: x.is_superuser)
-def user_restore(request, pk):
-    user = get_object_or_404(ShopUser, pk=pk)
-
-    if request.method == 'POST':
-        user.is_active = True
-        user.save()
-        return HttpResponseRedirect(reverse('adminapp:users'))
-
-    context = {
-        'title': 'пользователи/восстановление',
-        'user_to_restore': user,
-    }
-    return render(request, 'adminapp/user_restore.html', context)
-
-
-# @user_passes_test(lambda x: x.is_superuser)
-# def categories(request):
-#     categories_list = ProductCategory.objects.all()
-#
-#     content = {
-#         'title': 'админка/категории',
-#         'categories': categories_list,
-#     }
-#
-#     return render(request, 'adminapp/templates/mainapp/productcategory_list.html', content)
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = True
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class CategoriesListView(SuperUserOnlyMixin, PageTitleMixin, ListView):
@@ -241,20 +161,31 @@ class ProductCategoryDelete(SuperUserOnlyMixin, DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-@user_passes_test(lambda x: x.is_superuser)
-def categories_restore(request, pk):
-    obj = get_object_or_404(ProductCategory, pk=pk)
+class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
+    model = ProductCategory
+    success_url = reverse_lazy('adminapp:categories')
 
-    if request.method == 'POST':
-        obj.is_active = True
-        obj.save()
-        return HttpResponseRedirect(reverse('adminapp:categories'))
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = True
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
-    context = {
-        'title': 'категории/восстановление',
-        'object': obj,
-    }
-    return render(request, 'adminapp/categories_restore.html', context)
+
+# @user_passes_test(lambda x: x.is_superuser)
+# def categories_restore(request, pk):
+#     obj = get_object_or_404(ProductCategory, pk=pk)
+#
+#     if request.method == 'POST':
+#         obj.is_active = True
+#         obj.save()
+#         return HttpResponseRedirect(reverse('adminapp:categories'))
+#
+#     context = {
+#         'title': 'категории/восстановление',
+#         'object': obj,
+#     }
+#     return render(request, 'adminapp/categories_restore.html', context)
 
 
 @user_passes_test(lambda x: x.is_superuser)
@@ -269,7 +200,6 @@ def category_products(request, pk):
     }
 
     return render(request, 'adminapp/category_products.html', content)
-
 
 
 
@@ -305,7 +235,7 @@ class ProductCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
     form_class = AdminProductUpdateForm
     page_title = 'продукт/создание'
     # template_name = 'adminapp/productcategory_form.html'
-    success_url = reverse_lazy('adminapp:category_products')
+    success_url = reverse_lazy('adminapp:categories')
     # fields = '__all__'
 
 
@@ -342,7 +272,7 @@ class ProductUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
     page_title = 'продукт/редактирование'
     # fields = '__all__'
     # template_name = 'adminapp/templates/mainapp/productcategory_form.html'
-    success_url = reverse_lazy('adminapp:category_products')
+    success_url = reverse_lazy('adminapp:categories')
 
 
 # @user_passes_test(lambda u: u.is_superuser)
@@ -363,7 +293,7 @@ class ProductUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
 
 class ProductDelete(SuperUserOnlyMixin, DeleteView):
     model = Product
-    success_url = reverse_lazy('adminapp:category_products')
+    success_url = reverse_lazy('adminapp:categories')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -372,16 +302,16 @@ class ProductDelete(SuperUserOnlyMixin, DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-def products_restore(request, pk):
-    obj = get_object_or_404(Product, pk=pk)
+class ProductRestore(SuperUserOnlyMixin, DeleteView):
+    model = Product
+    success_url = reverse_lazy('adminapp:categories')
 
-    if request.method == 'POST':
-        obj.is_active = True
-        obj.save()
-        return HttpResponseRedirect(reverse('adminapp:category_products'))
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = True
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
-    context = {
-        'title': 'категории/восстановление',
-        'object': obj,
-    }
-    return render(request, 'adminapp/products_restore.html', context)
+def user_delete(request,pk):
+    if request.is_ajax():
+        pass

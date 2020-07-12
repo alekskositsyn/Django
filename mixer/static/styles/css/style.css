@@ -261,8 +261,8 @@
 
 .product-deal .leftside {
   text-align: center;
-  top: 30px;
-  bottom: 70px;
+  margin-top: 30px;
+  margin-bottom: 70px;
 }
 
 .product-deal .leftside img[alt="bigProductImg"] {
@@ -271,8 +271,8 @@
 
 .product-deal .rightside {
   text-align: center;
-  top: 30px;
-  bottom: 70px;
+  margin-top: 30px;
+  margin-bottom: 70px;
 }
 
 .product-deal .rightside .button_order_deal {
