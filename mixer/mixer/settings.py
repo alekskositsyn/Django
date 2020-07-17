@@ -64,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'basketapp.context_processors.basket',
+                # 'mainapp.context_processors.products_categories',
             ],
         },
     },
@@ -129,17 +131,30 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 
 LOGIN_URL = '/auth/login/'
 
-DOMAIN_NAME = 'http://localhost:8000'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'django@mixer.local'
-EMAIL_HOST_PASSWORD = 'mixer'
-EMAIL_USE_SSL = False
+# Gmail Test
+# DOMAIN_NAME = 'http://localhost:8000'
+
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = '465'
+# EMAIL_HOST_USER = 'akositsyn88@gmail.com'
+# EMAIL_HOST_PASSWORD = 'pswd'
+# DEFAULT_FROM_EMAIL = 'Mixer Shop'
+# EMAIL_USE_SSL = True
+# EMAIL_USE_TLS = True
+
+# Backend Test
+# DOMAIN_NAME = 'http://localhost:8000'
+#
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = '25'
+# EMAIL_HOST_USER = 'django@mixer.local'
+# EMAIL_HOST_PASSWORD = 'mixer'
+# EMAIL_USE_SSL = True
 # EMAIL_USE_TLS = True
 # вариант python -m smtpd -n -c DebuggingServer localhost:25
 # EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 
 # вариант логирования сообщений почты в виде файлов вместо отправки
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'tmp/email-messages/'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'

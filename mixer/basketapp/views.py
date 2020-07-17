@@ -12,11 +12,7 @@ from mixer.settings import LOGIN_URL
 
 @login_required
 def index(request):
-    context = {
-        'basket': request.user.basket.all()
-
-    }
-    return render(request, 'basketapp/index.html', context)
+    return render(request, 'basketapp/index.html')
 
 
 @login_required
@@ -55,12 +51,7 @@ def change(request, pk, quantity):
             print('ajax', pk, quantity)
             # basket_items = Basket.objects.filter(user=request.user). \
             #     order_by('product__category')
-            context = {
-                'basket': request.user.basket.all()
-
-            }
             result = render_to_string('basketapp/includes/inc__basket_list.html',
-                                      context,
                                       request=request
                                       )
 

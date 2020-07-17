@@ -33,7 +33,7 @@ class ShopUser(AbstractUser):
             },
         )
         title = f'Подтверждение учетной записи {self.username}'
-        message = f'Для подтверждения учетной записи {self.username} на портале' \
+        message = f'Для подтверждения учетной записи {self.username} на портале ' \
                   f'{settings.DOMAIN_NAME} перейдите по ссылке: \n{settings.DOMAIN_NAME}{verify_link}'
 
         return send_mail(title, message, settings.EMAIL_HOST_USER, [self.email], fail_silently=False)
