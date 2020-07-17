@@ -8,6 +8,7 @@ from authapp.forms import ShopUserLoginForm
 from authapp.forms import ShopUserRegisterForm
 
 from authapp.forms import ShopUserUpdateForm
+from authapp.models import ShopUser
 
 
 def login(request):
@@ -45,7 +46,12 @@ def register(request):
     if request.method == 'POST':
         form = ShopUserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            if user.send_verify_mail():
+                print('сообщение подтверждения отправлено')
+            else:
+                print('ошибка отправки сообщения')
+            # return HttpResponseRedirect(reverse('auth:login'))
             return HttpResponseRedirect(reverse('main:home'))
     else:
         form = ShopUserRegisterForm()
@@ -54,6 +60,21 @@ def register(request):
         'form': form,
     }
     return render(request, 'authapp/register.html', context)
+
+
+def verify(request, email, activation_key):
+    try:
+        user = ShopUser.objects.get(email=email)
+        if user.activation_key == activation_key and not user.is_activation_key_expired():
+            user.is_active = True
+            user.save()
+            auth.login(request, user)
+        else:
+            print(f'error activation user: {user}')
+        return render(request, 'authapp/verification.html')
+    except Exception as e:
+        print(f'error activation user : {e.args}')
+        return HttpResponseRedirect(reverse('main:home'))
 
 
 def update(request):
