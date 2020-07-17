@@ -49,6 +49,7 @@ def register(request):
             user = form.save()
             if user.send_verify_mail():
                 print('сообщение подтверждения отправлено')
+                return HttpResponseRedirect(reverse('auth:send_confirm'))
             else:
                 print('ошибка отправки сообщения')
             # return HttpResponseRedirect(reverse('auth:login'))

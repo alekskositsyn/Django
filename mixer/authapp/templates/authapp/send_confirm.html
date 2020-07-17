@@ -1,0 +1,13 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+
+{% block container %}
+    <h3>Сообщение подтверждения отправлено!</h3>
+    <br>
+    <h4>Проверьте письмо на почте и прейдите по ссылке указанной в письме.</h4>
+    <br>
+    <a href="{% url 'main:home' %}" class="btn btn-round form-control">
+        на главную
+    </a>
+{% endblock %}
