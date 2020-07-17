@@ -32,7 +32,15 @@ class PageTitleMixin:
 class UsersListView(SuperUserOnlyMixin, PageTitleMixin, ListView):
     model = ShopUser
     page_title = 'админка/пользователи'
-    # template_name = 'adminapp/shopuser_list.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        users_sort = qs.order_by('-is_superuser',
+                                 '-is_staff',
+                                 '-is_active',
+                                 '-first_name',
+                                 )
+        return users_sort
 
 
 class UserCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
@@ -76,7 +84,6 @@ class CategoriesListView(SuperUserOnlyMixin, PageTitleMixin, ListView):
     page_title = 'админка/категории'
 
 
-
 class ProductCategoryCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
     model = ProductCategory
     form_class = AdminProductCategoryUpdateForm
@@ -91,9 +98,7 @@ class ProductCategoryUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
     success_url = reverse_lazy('adminapp:categories')
 
 
-
-
-class ProductCategoryDelete(SuperUserOnlyMixin, DeleteView):
+class ProductCategoryDeleteVeiw(SuperUserOnlyMixin, DeleteView):
     model = ProductCategory
     success_url = reverse_lazy('adminapp:categories')
 
@@ -102,6 +107,12 @@ class ProductCategoryDelete(SuperUserOnlyMixin, DeleteView):
         self.object.is_active = False
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        result = super().get_success_url()
+        # print(vars(self))
+        # print(dir(self))
+        return result
 
 
 class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
@@ -115,19 +126,28 @@ class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-@user_passes_test(lambda x: x.is_superuser)
-def category_products(request, pk):
-    category = get_object_or_404(ProductCategory, pk=pk)
-    object_list = Product.objects.filter(category__pk=pk).order_by('name')
+class CategoryProductsListView(ListView, PageTitleMixin):
+    model = Product
+    page_title = 'категория/товары'
+    template_name = 'adminapp/category_products.html'
 
-    content = {
-        'title': f'продукты категории {category.name}',
-        'category': category,
-        'object_list': object_list,
-    }
+    def get_queryset(self):
+        obj = Product.objects.filter(category__pk=self.kwargs['pk']).order_by('-is_active', '-name')
+        return obj
 
-    return render(request, 'adminapp/category_products.html', content)
 
+# @user_passes_test(lambda x: x.is_superuser)
+# def category_products(request, pk):
+#     category = get_object_or_404(ProductCategory, pk=pk)
+#     object_list = Product.objects.filter(category__pk=pk).order_by('name')
+#
+#     content = {
+#         'title': f'продукты категории {category.name}',
+#         'category': category,
+#         'object_list': object_list,
+#     }
+#
+#     return render(request, 'adminapp/category_products.html', content)
 
 
 # @user_passes_test(lambda u: u.is_superuser)
@@ -158,7 +178,7 @@ def category_products(request, pk):
 #     return render(request, 'adminapp/product_form.html', context)
 
 class ProductCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
-    model = ProductCategory
+    model = Product
     form_class = AdminProductUpdateForm
     page_title = 'продукт/создание'
     # template_name = 'adminapp/productcategory_form.html'
@@ -168,7 +188,7 @@ class ProductCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
 
 class ProductDetail(DetailView):
     model = Product
-    # pk_url_kwarg = 'product_pk'
+    pk_url_kwarg = 'product_pk'
 
 
 # @user_passes_test(lambda u: u.is_superuser)
@@ -239,6 +259,7 @@ class ProductRestore(SuperUserOnlyMixin, DeleteView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
-def user_delete(request,pk):
+
+def user_delete(request, pk):
     if request.is_ajax():
         pass

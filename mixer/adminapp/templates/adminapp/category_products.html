@@ -4,7 +4,7 @@
 
 {% block container %}
     <div class="basket_list products_list">
-        <a class="btn btn-danger new_product" href={% url 'adminapp:product_create' category.pk %}>
+        <a class="btn btn-danger new_product" href="{#% url 'adminapp:product_create' category.pk %#}">
             новый продукт
         </a>
         {% for object in object_list %}
@@ -25,10 +25,10 @@
                     <span>{{ object.quantity }}</span>
                 </div>
                 <div class="product_actions">
-                    <a class="btn btn-outline-dark" href={% url 'adminapp:item_products' object.pk %}>
+                    <a class="btn btn-outline-dark" href="{% url 'adminapp:item_products' object.pk %}">
                         подробнее
                     </a>
-                    <a class="btn btn-outline-dark" href={% url 'adminapp:product_update' object.pk %}>
+                    <a class="btn btn-outline-dark" href="{% url 'adminapp:product_update' object.pk %}">
                         редактировать
                     </a>
                     {% if object.is_active %}

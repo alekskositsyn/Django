@@ -36,7 +36,7 @@ def catalog(request):
 def category_products(request, pk, page=1):
     if pk == '0':
         category = {'pk': 0, 'name': 'все'}
-        products = Product.objects.filter(is_active=True, category__is_active=True)
+        products = Product.objects.filter(is_active=True)
     else:
         category = get_object_or_404(ProductCategory, pk=pk)
         products = category.product_set.all()
