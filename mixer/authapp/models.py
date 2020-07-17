@@ -17,6 +17,7 @@ def get_activation_key_express():
 class ShopUser(AbstractUser):
     age = models.PositiveIntegerField(verbose_name='возраст', null=True)
     avatar = models.ImageField(upload_to='users_avatar', blank=True)
+    email = models.EmailField(verbose_name='email address', blank=True, unique=True)
 
     activation_key = models.CharField(max_length=128, blank=True)
     activation_key_expires = models.DateTimeField(default=get_activation_key_express)

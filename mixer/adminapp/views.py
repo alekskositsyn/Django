@@ -34,10 +34,6 @@ class UsersListView(SuperUserOnlyMixin, PageTitleMixin, ListView):
     page_title = 'админка/пользователи'
     # template_name = 'adminapp/shopuser_list.html'
 
-    # @method_decorator(user_passes_test(lambda u: u.is_superuser))
-    # def dispatch(self, *args, **kwargs):
-    #     return super().dispatch(*args, **kwargs)
-
 
 class UserCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
     model = ShopUser
@@ -80,74 +76,21 @@ class CategoriesListView(SuperUserOnlyMixin, PageTitleMixin, ListView):
     page_title = 'админка/категории'
 
 
-# def category_create(request):
-#     if request.method == 'POST':
-#         category_form = ProductCategoryUpdateForm(request.POST, request.FILES)
-#         if category_form.is_valid():
-#             category_form.save()
-#             return HttpResponseRedirect(reverse('my_admin:categories'))
-#     else:
-#         category_form = ProductCategoryUpdateForm()
-#
-#     context = {
-#         'title': 'категории/создание',
-#         'form': category_form
-#     }
-#
-#     return render(request, 'adminapp/productcategory_form.html', context)
-
 
 class ProductCategoryCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
     model = ProductCategory
     form_class = AdminProductCategoryUpdateForm
     page_title = 'категории/создание'
-    # template_name = 'adminapp/productcategory_form.html'
     success_url = reverse_lazy('adminapp:categories')
-    # fields = '__all__'
 
 
 class ProductCategoryUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
     model = ProductCategory
     form_class = AdminProductCategoryUpdateForm
     page_title = 'категории/редактирование'
-    # fields = '__all__'
-    # template_name = 'adminapp/templates/mainapp/productcategory_form.html'
     success_url = reverse_lazy('adminapp:categories')
 
 
-# @user_passes_test(lambda x: x.is_superuser)
-# def category_update(request, pk):
-#     category = get_object_or_404(ProductCategory, pk=pk)
-#     if request.method == 'POST':
-#         category_form = ProductCategoryUpdateForm(request.POST, request.FILES, instance=category)
-#         if category_form.is_valid():
-#             category_form.save()
-#             return HttpResponseRedirect(reverse('my_admin:categories'))
-#     else:
-#         category_form = ProductCategoryUpdateForm(instance=category)
-#
-#     context = {
-#         'title': 'категории/редактирование',
-#         'form': category_form
-#     }
-#
-#     return render(request, 'adminapp/productcategory_form.html', context)
-
-
-# @user_passes_test(lambda x: x.is_superuser)
-# def category_delete(request, pk):
-#     category = get_object_or_404(ProductCategory, pk=pk)
-#
-#     if request.method == 'POST':
-#         category.is_active = False
-#         category.save()
-#         return HttpResponseRedirect(reverse('my_admin:categories'))
-#
-#     context = {
-#         'title': 'категории/удаление',
-#         'category_to_delete': category,
-#     }
-#     return render(request, 'adminapp/category_delete.html', context)
 
 
 class ProductCategoryDelete(SuperUserOnlyMixin, DeleteView):
@@ -170,22 +113,6 @@ class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
         self.object.is_active = True
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
-
-
-# @user_passes_test(lambda x: x.is_superuser)
-# def categories_restore(request, pk):
-#     obj = get_object_or_404(ProductCategory, pk=pk)
-#
-#     if request.method == 'POST':
-#         obj.is_active = True
-#         obj.save()
-#         return HttpResponseRedirect(reverse('adminapp:categories'))
-#
-#     context = {
-#         'title': 'категории/восстановление',
-#         'object': obj,
-#     }
-#     return render(request, 'adminapp/categories_restore.html', context)
 
 
 @user_passes_test(lambda x: x.is_superuser)
