@@ -13,6 +13,7 @@
             <form class=" form-horizontal" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
+                {{ profile_form.as_p }}
                 <br>
                 <input class="btn btn-primary form-control" type="submit" value="Сохранить">
             </form>

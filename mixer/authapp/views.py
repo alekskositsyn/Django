@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from authapp.forms import ShopUserLoginForm
+from authapp.forms import ShopUserLoginForm, ShopUserProfileUpdateForm
 
 from authapp.forms import ShopUserRegisterForm
 
@@ -92,13 +92,18 @@ def create_user_profile(sender, instance, created, **kwargs):
 def update(request):
     if request.method == 'POST':
         form = ShopUserUpdateForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
+        profile_form = ShopUserProfileUpdateForm(request.POST, request.FILES, instance=request.user.shopuserprofile)
+
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+            # profile_form.save()
             return HttpResponseRedirect(reverse('auth:update'))
     else:
         form = ShopUserUpdateForm(instance=request.user)
+        profile_form = ShopUserProfileUpdateForm(instance=request.user.shopuserprofile)
     context = {
         'title': 'Проверьте правильность заполнения данных',
         'form': form,
+        'profile_form': profile_form,
     }
     return render(request, 'authapp/update.html', context)
