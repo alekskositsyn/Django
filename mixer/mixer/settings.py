@@ -161,11 +161,12 @@ LOGIN_URL = '/auth/login/'
 # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # EMAIL_FILE_PATH = 'tmp/email-messages/'
 
-AUTHENTICATION_BACKEND = (
+AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'social_core.backends.vk.VKOAuth2',
     'social_core.backends.google.GoogleOAuth2',
 )
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 # SOCIAL = {}
 with open('mixer/social_auth.json', 'r') as f:
