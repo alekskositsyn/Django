@@ -40,7 +40,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
              None,
              urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about')),
                                    access_token=response['access_token'],
-                                   v='5.92')),
+                                   v='5.120')),
              None
              )
         )
@@ -51,8 +51,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
         data = resp.json()['response'][0]
         if data.get('sex'):
-            user.shopuserprofile.gender = \
-                ShopUserProfile.MALE if data['sex'] == 2 else ShopUserProfile.FEMALE
+            user.shopuserprofile.gender = ShopUserProfile.MALE if data['sex'] == 2 else ShopUserProfile.FEMALE
 
         if data.get('about'):
             user.shopuserprofile.aboutMe = data['about']
@@ -61,8 +60,17 @@ def save_user_profile(backend, user, response, *args, **kwargs):
             bdate = datetime.strptime(data['bdate'], '%d.%m.%Y').date()
 
             age = timezone.now().date().year - bdate.year
+
             if age < 18:
                 user.delete()
                 raise AuthForbidden('social_core.backends.vk.VKOAuth2')
+            user.age = age
+
+        if backend.name == 'vk-oauth2':
+            url = response.get('photo_100', '')
+
+        if url:
+            user.avatar = url
+            user.save()
 
         user.save()

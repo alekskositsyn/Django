@@ -26,7 +26,7 @@ SECRET_KEY = 'q(fi6br!0b5@o1mhpur!_2_3q#g1@6mom#@n^9k8+u$&fvx*fk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 # Application definition
 
@@ -167,6 +167,7 @@ EMAIL_FILE_PATH = 'tmp/email-messages/'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.vk.VKOAuth2',
 )
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
@@ -186,7 +187,7 @@ LOGIN_ERROR_URL = '/auth/login/'
 
 SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = [
-    'email', 'bdate', 'sex', 'about'
+    'email', 'bdate', 'sex', 'about',
 ]
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True

@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.db import transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect
@@ -89,10 +90,17 @@ def create_user_profile(sender, instance, created, **kwargs):
         instance.shopuserprofile.save()
 
 
+@transaction.atomic
 def update(request):
     if request.method == 'POST':
-        form = ShopUserUpdateForm(request.POST, request.FILES, instance=request.user)
-        profile_form = ShopUserProfileUpdateForm(request.POST, request.FILES, instance=request.user.shopuserprofile)
+        form = ShopUserUpdateForm(
+            request.POST, request.FILES,
+            instance=request.user
+        )
+        profile_form = ShopUserProfileUpdateForm(
+            request.POST, request.FILES,
+            instance=request.user.shopuserprofile
+        )
 
         if form.is_valid() and profile_form.is_valid():
             form.save()
