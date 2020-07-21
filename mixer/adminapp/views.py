@@ -127,13 +127,16 @@ class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
 
 
 class CategoryProductsListView(ListView, PageTitleMixin):
-    model = Product
     page_title = 'категория/товары'
-    template_name = 'adminapp/category_products.html'
 
     def get_queryset(self):
         obj = Product.objects.filter(category__pk=self.kwargs['pk']).order_by('-is_active', '-name')
         return obj
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['category'] = Product.objects.get(pk=self.kwargs['pk'])
+        return context
 
 
 # @user_passes_test(lambda x: x.is_superuser)
@@ -141,13 +144,13 @@ class CategoryProductsListView(ListView, PageTitleMixin):
 #     category = get_object_or_404(ProductCategory, pk=pk)
 #     object_list = Product.objects.filter(category__pk=pk).order_by('name')
 #
-#     content = {
+#     context = {
 #         'title': f'продукты категории {category.name}',
 #         'category': category,
 #         'object_list': object_list,
 #     }
 #
-#     return render(request, 'adminapp/category_products.html', content)
+#     return render(request, 'adminapp/category_products.html', context)
 
 
 # @user_passes_test(lambda u: u.is_superuser)
