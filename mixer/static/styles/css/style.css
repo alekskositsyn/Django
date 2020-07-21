@@ -93,6 +93,41 @@
   padding: 0.17rem .75rem;
 }
 
+.admin_container .product_detail {
+  clear: both;
+}
+
+.admin_container .product_detail .leftside img {
+  width: 100%;
+}
+
+.admin_container .product_detail .rightside .price .numprice {
+  font-size: 20px;
+}
+
+.admin_container .product_detail .rightside .price .currancy {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.admin_container .product_detail .button_edit {
+  float: left;
+  margin-right: 10px;
+}
+
+.admin_container .product_detail .button_back {
+  margin-top: 10px;
+}
+
+.admin_container .product_detail .desc_product_deal {
+  margin-top: 10px;
+  color: #212121;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24.01px;
+  letter-spacing: 0.4px;
+}
+
 .admin_container .admin_menu {
   float: right;
 }

@@ -174,9 +174,10 @@ class ProductCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
         return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
 
 
-class ProductDetail(DetailView):
+class ProductDetail(DetailView,PageTitleMixin):
     model = Product
     pk_url_kwarg = 'product_pk'
+    page_title = 'продукт'
 
 
 # @user_passes_test(lambda u: u.is_superuser)
