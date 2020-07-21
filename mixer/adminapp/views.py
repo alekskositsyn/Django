@@ -116,7 +116,7 @@ class ProductCategoryDeleteVeiw(SuperUserOnlyMixin, DeleteView):
 
 
 class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
-    model = ProductCategory
+    model = Product
     success_url = reverse_lazy('adminapp:categories')
 
     def delete(self, request, *args, **kwargs):
@@ -127,7 +127,7 @@ class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
 
 
 class CategoryProductsListView(ListView, PageTitleMixin):
-    model = Product
+    model = ProductCategory
     page_title = 'категория/товары'
     template_name = 'adminapp/category_products.html'
 
