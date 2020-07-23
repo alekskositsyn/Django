@@ -1,3 +1,4 @@
+import urllib
 from collections import OrderedDict
 from datetime import datetime
 from urllib.parse import urlencode, urlunparse
@@ -7,6 +8,7 @@ from django.utils import timezone
 from social_core.exceptions import AuthForbidden
 
 from authapp.models import ShopUserProfile
+from mixer.settings import MEDIA_ROOT
 
 
 def save_user_profile(backend, user, response, *args, **kwargs):
@@ -17,6 +19,13 @@ def save_user_profile(backend, user, response, *args, **kwargs):
                 user.shopuserprofile.gender = ShopUserProfile.MALE
             else:
                 user.shopuserprofile.gender = ShopUserProfile.FEMALE
+
+        if 'picture' in response.keys():
+            id_user = response.get('access_token')[:len(response.get('access_token')) // 3]
+            urllib.request.urlretrieve(
+                response.get('photo'),
+                f'media/users_avatar/{id_user}' + '.jpg')
+            user.avatar = f'media/users_avatar/{id_user}' + '.jpg'
 
         if 'tagline' in response.keys():
             user.shopuserprofile.tagline = response['tagline']
@@ -33,36 +42,16 @@ def save_user_profile(backend, user, response, *args, **kwargs):
         user.save()
 
     elif backend.name == 'vk-oauth2':
-        api_url = urlunparse(
-            ('https',
-             'api.vk.com',
-             '/method/users.get',
-             None,
-             urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about')),
-                                   access_token=response['access_token'],
-                                   v='5.120')),
-             None
-             )
-        )
-
-        resp = requests.get(api_url)
-        if resp.status_code != 200:
-            return
-
-        data = resp.json()['response'][0]
-        if data.get('sex'):
-            user.shopuserprofile.gender = ShopUserProfile.MALE if data['sex'] == 2 else ShopUserProfile.FEMALE
-
-        if data.get('about'):
-            user.shopuserprofile.aboutMe = data['about']
-
-        if data.get('bdate'):
-            bdate = datetime.strptime(data['bdate'], '%d.%m.%Y').date()
-
-            age = timezone.now().date().year - bdate.year
-
-            if age < 18:
-                user.delete()
-                raise AuthForbidden('social_core.backends.vk.VKOAuth2')
-            user.age = age
+        if 'photo' in response.keys():
+            picture = requests.get(response['photo']).content
+            file_name = f'users_avatar/{user.username}_logo.jpg'
+            with open(f'{MEDIA_ROOT}/{file_name}', 'wb') as f:
+                f.write(picture)
+            user.avatar = file_name
+        # if 'photo' in response.keys():
+        #     id_user = response.get('id')
+        #     urllib.request.urlretrieve(
+        #         response.get('photo'),
+        #         f'media/users_avatar/{id_user}' + '.jpg')
+        #     user.avatar = f'media/users_avatar/{id_user}' + '.jpg'
         user.save()
