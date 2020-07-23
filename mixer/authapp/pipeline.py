@@ -21,11 +21,11 @@ def save_user_profile(backend, user, response, *args, **kwargs):
                 user.shopuserprofile.gender = ShopUserProfile.FEMALE
 
         if 'picture' in response.keys():
-            id_user = response.get('access_token')[:len(response.get('access_token')) // 3]
-            urllib.request.urlretrieve(
-                response.get('photo'),
-                f'media/users_avatar/{id_user}' + '.jpg')
-            user.avatar = f'media/users_avatar/{id_user}' + '.jpg'
+            picture = requests.get(response['picture']).content
+            file_name = f'users_avatar/{user.username}_logo.jpg'
+            with open(f'{MEDIA_ROOT}/{file_name}', 'wb') as f:
+                f.write(picture)
+            user.avatar = file_name
 
         if 'tagline' in response.keys():
             user.shopuserprofile.tagline = response['tagline']
