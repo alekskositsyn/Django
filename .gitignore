@@ -4,6 +4,7 @@ dist/
 .idea/inspectionProfiles
 .idea
 .vscode
+django2.2/
 mixer/adminapp/__pycache__/__init__.cpython-36.pyc
 mixer/adminapp/__pycache__/admin.cpython-36.pyc
 mixer/adminapp/__pycache__/forms.cpython-36.pyc
