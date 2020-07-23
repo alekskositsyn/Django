@@ -1,14 +1,17 @@
 from django.contrib import auth
+from django.db import transaction
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from authapp.forms import ShopUserLoginForm
+from authapp.forms import ShopUserLoginForm, ShopUserProfileUpdateForm
 
 from authapp.forms import ShopUserRegisterForm
 
 from authapp.forms import ShopUserUpdateForm
-from authapp.models import ShopUser
+from authapp.models import ShopUser, ShopUserProfile
 
 
 def login(request):
@@ -69,7 +72,8 @@ def verify(request, email, activation_key):
         if user.activation_key == activation_key and not user.is_activation_key_expired():
             user.is_active = True
             user.save()
-            auth.login(request, user)
+            auth.login(request, user,
+                       backend='django.contrib.auth.backends.ModelBackend')
         else:
             print(f'error activation user: {user}')
         return render(request, 'authapp/verification.html')
@@ -78,16 +82,36 @@ def verify(request, email, activation_key):
         return HttpResponseRedirect(reverse('main:home'))
 
 
+@receiver(post_save, sender=ShopUser)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        ShopUserProfile.objects.create(user=instance)
+    else:
+        instance.shopuserprofile.save()
+
+
+@transaction.atomic
 def update(request):
     if request.method == 'POST':
-        form = ShopUserUpdateForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
+        form = ShopUserUpdateForm(
+            request.POST, request.FILES,
+            instance=request.user
+        )
+        profile_form = ShopUserProfileUpdateForm(
+            request.POST, request.FILES,
+            instance=request.user.shopuserprofile
+        )
+
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+            # profile_form.save()
             return HttpResponseRedirect(reverse('auth:update'))
     else:
         form = ShopUserUpdateForm(instance=request.user)
+        profile_form = ShopUserProfileUpdateForm(instance=request.user.shopuserprofile)
     context = {
         'title': 'Проверьте правильность заполнения данных',
         'form': form,
+        'profile_form': profile_form,
     }
     return render(request, 'authapp/update.html', context)

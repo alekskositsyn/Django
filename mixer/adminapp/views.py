@@ -116,7 +116,7 @@ class ProductCategoryDeleteVeiw(SuperUserOnlyMixin, DeleteView):
 
 
 class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
-    model = Product
+    model = ProductCategory
     success_url = reverse_lazy('adminapp:categories')
 
     def delete(self, request, *args, **kwargs):
@@ -126,28 +126,16 @@ class ProductCategoryRestore(SuperUserOnlyMixin, DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class CategoryProductsListView(ListView, PageTitleMixin):
-    model = ProductCategory
-    page_title = 'категория/товары'
-    template_name = 'adminapp/category_products.html'
-
+class CategoryProductsListView(ListView):
     def get_queryset(self):
-        obj = Product.objects.filter(category__pk=self.kwargs['pk']).order_by('-is_active', '-name')
+        obj = Product.objects.filter(category__pk=self.kwargs['pk']).order_by('-is_active', 'name')
         return obj
 
-
-# @user_passes_test(lambda x: x.is_superuser)
-# def category_products(request, pk):
-#     category = get_object_or_404(ProductCategory, pk=pk)
-#     object_list = Product.objects.filter(category__pk=pk).order_by('name')
-#
-#     content = {
-#         'title': f'продукты категории {category.name}',
-#         'category': category,
-#         'object_list': object_list,
-#     }
-#
-#     return render(request, 'adminapp/category_products.html', content)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['category'] = ProductCategory.objects.get(pk=self.kwargs['pk'])
+        context['title'] = 'категория/продукты'
+        return context
 
 
 # @user_passes_test(lambda u: u.is_superuser)
@@ -181,14 +169,15 @@ class ProductCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
     model = Product
     form_class = AdminProductUpdateForm
     page_title = 'продукт/создание'
-    # template_name = 'adminapp/productcategory_form.html'
-    success_url = reverse_lazy('adminapp:categories')
-    # fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
 
 
-class ProductDetail(DetailView):
+class ProductDetail(DetailView,PageTitleMixin):
     model = Product
     pk_url_kwarg = 'product_pk'
+    page_title = 'продукт'
 
 
 # @user_passes_test(lambda u: u.is_superuser)
@@ -217,9 +206,9 @@ class ProductUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
     model = Product
     form_class = AdminProductUpdateForm
     page_title = 'продукт/редактирование'
-    # fields = '__all__'
-    # template_name = 'adminapp/templates/mainapp/productcategory_form.html'
-    success_url = reverse_lazy('adminapp:categories')
+
+    def get_success_url(self):
+        return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
 
 
 # @user_passes_test(lambda u: u.is_superuser)
@@ -240,7 +229,6 @@ class ProductUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
 
 class ProductDelete(SuperUserOnlyMixin, DeleteView):
     model = Product
-    success_url = reverse_lazy('adminapp:categories')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -248,10 +236,12 @@ class ProductDelete(SuperUserOnlyMixin, DeleteView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
+    def get_success_url(self):
+        return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
+
 
 class ProductRestore(SuperUserOnlyMixin, DeleteView):
     model = Product
-    success_url = reverse_lazy('adminapp:categories')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -259,7 +249,6 @@ class ProductRestore(SuperUserOnlyMixin, DeleteView):
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
+    def get_success_url(self):
+        return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
 
-def user_delete(request, pk):
-    if request.is_ajax():
-        pass
