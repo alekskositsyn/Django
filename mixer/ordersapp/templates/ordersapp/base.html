@@ -27,19 +27,13 @@
                 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
                 crossorigin="anonymous">
         </script>
-        <script src="{% static 'js/basket_scripts.js' %}"></script>
     {% endblock %}
 </head>
 <body>
 <div class="order_container">
-    <div class="h2 text-center head">
-        Ваша корзина,
-        {{ user.first_name|default:'пользователь'|title }}
-    </div>
-
+</div>
     {% block container %}
     {% endblock %}
-
 </div>
 </body>
 </html>
