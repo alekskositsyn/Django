@@ -8,7 +8,7 @@ from mainapp.models import Product
 # class BasketQuerySet(models.QuerySet):  # own model manager
 #     def delete(self):
 #         for object in self:
-#             # object.product.quantity -= object.quantity
+#             # object.product.quantity += object.quantity
 #             # object.product.save()
 #             object.delete()
 #         return super().delete()
