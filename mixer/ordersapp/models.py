@@ -5,6 +5,14 @@ from authapp.models import ShopUser
 from mainapp.models import Product
 
 
+# class OrderItemQuerySet(models.QuerySet):
+#     def delete(self, *args, **kwargs):
+#         for object in self:
+#             object.product.quantity += object.quantity
+#             object.product.save()
+#         return super().delete()
+
+
 class Order(models.Model):
     FORMING = 'F'
     SENT_TO_PROCEED = 'S'
@@ -30,6 +38,8 @@ class Order(models.Model):
                               choices=ORDER_STATUS_CHOICES,
                               default=FORMING)
     is_active = models.BooleanField(verbose_name='активен', default=True)
+
+    # objects = OrderItemQuerySet.as_manager()
 
     class Meta:
         ordering = ('-created',)

@@ -42,6 +42,7 @@ class OrderCreate(CreateView):
                 for form, basket_item in zip(formset.forms, basket_items):
                     form.initial['product'] = basket_item.product
                     form.initial['quantity'] = basket_item.quantity
+                    # form.initial['price'] = basket_item.product.price
                 # basket_items.delete()
             else:
                 formset = OrderFormSet()
@@ -60,6 +61,8 @@ class OrderCreate(CreateView):
                 orderitems.instance = self.object
                 orderitems.save()
             self.request.user.basket.all().delete()
+            # for item in self.request.user.basket.all():  # -> many queries
+            #     item.delete()  # object method call
 
         # удаляем пустой заказ
         if self.object.get_total_cost() == 0:
@@ -94,6 +97,9 @@ class OrderUpdate(UpdateView):
             )
         else:
             formset = OrderFormSet(instance=self.object)
+            for form in formset.forms:
+                if form.instance.pk:
+                    form.initial['price'] = form.instance.product.price
         data['orderitems'] = formset
         return data
 
@@ -123,5 +129,5 @@ def order_forming_complete(request, pk):
     order = get_object_or_404(Order, pk=pk)
     order.status = Order.SENT_TO_PROCEED
     order.save()
-
-    return HttpResponseRedirect(reverse('orders:index'))
+    # return HttpResponseRedirect(reverse('orders:index'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
