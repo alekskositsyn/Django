@@ -6,5 +6,4 @@
         <a href="{% url 'main:category_products' category.pk %}" type="button"
            class="{% if request.resolver_match.kwargs.pk|add:0 == category.pk %} active {% endif %} btn btn-secondary">{{ category.name }}</a>
     {% endfor %}
-
 </div>

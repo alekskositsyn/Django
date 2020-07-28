@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IGFsZXhlaTIzMg==?=
+From: django@mixer.local
+To: al@gmail.com
+Date: Sun, 19 Jul 2020 11:23:12 -0000
+Message-ID: <159515779245.5769.5974860993024065882@aleks-VirtualBox>
+
+Для подтверждения учетной записи alexei232 на портале http://localhost:8000 перейдите по ссылке: 
+http://localhost:8000/auth/verify/al@gmail.com/526e0da3c9f440906613b3bb0675bc56c7eeaa0f/
+-------------------------------------------------------------------------------

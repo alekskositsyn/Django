@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models.signals import pre_save, pre_delete
+from django.dispatch import receiver
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -8,15 +10,12 @@ from django.urls import reverse
 from mainapp.models import Product
 
 from mixer.settings import LOGIN_URL
+from ordersapp.models import OrderItem
 
 
 @login_required
 def index(request):
-    context = {
-        'basket': request.user.basket.all()
-
-    }
-    return render(request, 'basketapp/index.html', context)
+    return render(request, 'basketapp/index.html')
 
 
 @login_required
@@ -55,12 +54,7 @@ def change(request, pk, quantity):
             print('ajax', pk, quantity)
             # basket_items = Basket.objects.filter(user=request.user). \
             #     order_by('product__category')
-            context = {
-                'basket': request.user.basket.all()
-
-            }
             result = render_to_string('basketapp/includes/inc__basket_list.html',
-                                      context,
                                       request=request
                                       )
 
@@ -71,3 +65,21 @@ def change(request, pk, quantity):
             #     'total_quantity': basket.quantity,
             #     'product_cost': basket.product_cost,
             # })
+
+
+@receiver(pre_save, sender=Basket)
+def product_quantity_update_save(sender, instance, **kwargs):
+    # print(f'pre_save: {sender}')
+    if instance.pk:
+        instance.product.quantity -= instance.quantity - \
+                                     sender.get_item(instance.pk).quantity
+    else:
+        instance.product.quantity -= instance.quantity
+    instance.product.save()
+
+
+@receiver(pre_delete, sender=Basket)
+def product_quantity_update_delete(sender, instance, **kwargs):
+    # print(f'pre_delete: {sender}')
+    instance.product.quantity += instance.quantity
+    instance.product.save()

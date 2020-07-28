@@ -39,16 +39,12 @@
   border-bottom: 2px solid #000;
 }
 
+.header .user-entrance .user-btn {
+  float: left;
+}
+
 .header .user-entrance a {
   margin-right: 5px;
-}
-
-.header .user-icon .user-entrance {
-  float: left;
-}
-
-.header .user-icon .user-entrance .name-user {
-  float: left;
 }
 
 .header .fa-heart {
@@ -91,6 +87,41 @@
 
 .admin_container .login input {
   padding: 0.17rem .75rem;
+}
+
+.admin_container .product_detail {
+  clear: both;
+}
+
+.admin_container .product_detail .leftside img {
+  width: 100%;
+}
+
+.admin_container .product_detail .rightside .price .numprice {
+  font-size: 20px;
+}
+
+.admin_container .product_detail .rightside .price .currancy {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.admin_container .product_detail .button_edit {
+  float: left;
+  margin-right: 10px;
+}
+
+.admin_container .product_detail .button_back {
+  margin-top: 10px;
+}
+
+.admin_container .product_detail .desc_product_deal {
+  margin-top: 10px;
+  color: #212121;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24.01px;
+  letter-spacing: 0.4px;
 }
 
 .admin_container .admin_menu {
@@ -190,6 +221,11 @@
   text-transform: uppercase;
 }
 
+.order_container {
+  width: 850px;
+  margin: 0 auto;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -261,8 +297,8 @@
 
 .product-deal .leftside {
   text-align: center;
-  top: 30px;
-  bottom: 70px;
+  margin-top: 30px;
+  margin-bottom: 70px;
 }
 
 .product-deal .leftside img[alt="bigProductImg"] {
@@ -271,8 +307,8 @@
 
 .product-deal .rightside {
   text-align: center;
-  top: 30px;
-  bottom: 70px;
+  margin-top: 30px;
+  margin-bottom: 70px;
 }
 
 .product-deal .rightside .button_order_deal {

@@ -11,10 +11,6 @@ def get_hot_product():
     return hot_product
 
 
-def get_basket(request):
-    return request.user.is_authenticated and request.user.basket.all() or []
-
-
 def get_menu():
     return ProductCategory.objects.filter(is_active=True)
 
@@ -22,7 +18,6 @@ def get_menu():
 def home(request):
     context = {
         'page_title': 'главная "mixer"',
-        'basket': get_basket(request),
     }
     return render(request, 'mainapp/home.html', context)
 
@@ -34,7 +29,6 @@ def catalog(request):
         'page_title': 'каталог',
         'products_categories': get_menu(),
         'products': products,
-        'basket': get_basket(request),
     }
     return render(request, 'mainapp/catalog.html', context)
 
@@ -42,7 +36,7 @@ def catalog(request):
 def category_products(request, pk, page=1):
     if pk == '0':
         category = {'pk': 0, 'name': 'все'}
-        products = Product.objects.filter(is_active=True, category__is_active=True)
+        products = Product.objects.filter(is_active=True)
     else:
         category = get_object_or_404(ProductCategory, pk=pk)
         products = category.product_set.all()
@@ -59,7 +53,6 @@ def category_products(request, pk, page=1):
         'products_categories': get_menu(),
         'products': products,
         'category': category,
-        'basket': get_basket(request),
     }
     return render(request, 'mainapp/category_products.html', context)
 
@@ -67,7 +60,6 @@ def category_products(request, pk, page=1):
 def contacts(request):
     context = {
         'page_title': 'контакты',
-        'basket': get_basket(request),
     }
     return render(request, 'mainapp/contacts.html', context)
 
@@ -81,7 +73,6 @@ def product(request, pk):
         'page_title': 'каталог',
         'categories': get_menu(),
         'category': product.category,
-        'basket': get_basket(request),
         'product': product,
         'hot_product': get_hot_product,
         'same_product': same_product,
