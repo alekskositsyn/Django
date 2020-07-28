@@ -39,16 +39,12 @@
   border-bottom: 2px solid #000;
 }
 
+.header .user-entrance .user-btn {
+  float: left;
+}
+
 .header .user-entrance a {
   margin-right: 5px;
-}
-
-.header .user-icon .user-entrance {
-  float: left;
-}
-
-.header .user-icon .user-entrance .name-user {
-  float: left;
 }
 
 .header .fa-heart {
@@ -223,6 +219,11 @@
 
 .basket_list a {
   text-transform: uppercase;
+}
+
+.order_container {
+  width: 850px;
+  margin: 0 auto;
 }
 
 * {

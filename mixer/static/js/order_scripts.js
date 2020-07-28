@@ -85,12 +85,13 @@ window.onload = function () {
         addText: 'добавить продукт',
         deleteText: 'удалить',
         prefix: 'orderitems',
+        keepFieldValues: 'price',
         removed: deleteOrderItem
     });
 
-    // $orderForm.on('change', 'select', function (event) {
-    //     let target = event.target;
-    //     console.log(target);
-    // });
+    $orderForm.on('change', 'select', function (event) {
+        let target = event.target;
+        console.log(target);
+    });
 
 };

@@ -21,7 +21,7 @@
 
 
                 <li class="nav-item active">
-                    <a class=" nav-link " href="{% url 'main:catalog' %}">Продукты<span
+                    <a class=" nav-link " href="{% url 'main:category_products' 0 %}">Продукты<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -34,8 +34,8 @@
             <div class="user-icon">
                 <div class="user-entrance">
                     {% if user.is_authenticated %}
-                        <div class="dropdown">
-                            <a class="name-user btn btn-secondary dropdown-toggle" href="#" data-toggle="dropdown"
+                        <div class="user-btn dropdown">
+                            <a class=" btn btn-outline-dark dropdown-toggle" href="#" data-toggle="dropdown"
                                aria-expanded="false">
                                 {{ user.first_name|default:'пользователь'|title }}
                                 <span class="caret"></span>
@@ -78,7 +78,7 @@
                     {% endif %}
                 </span>
 
-                <a class="btn" href="#"><i class="far fa-heart fa-2x"></i></a>
+                <a class="btn" href="#"><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="basket">
 
@@ -90,7 +90,7 @@
                     {% endif %}
                 </span>
 
-                <a class="btn" href="{% url 'basket:index' %}"><i class="fas fa-shopping-basket fa-2x"></i></a>
+                <a class="btn" href="{% url 'basket:index' %}"><i class="fa-shopping-basket fa " aria-hidden="true"></i></a>
             </div>
 
         </div>
