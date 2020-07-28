@@ -1,0 +1,19 @@
+{% load static %}
+<div class="col-lg-8 range products">
+    <div class="row justify-content-center">
+        {% for product in same_product %}
+            <div class="col-lg-3 col-md-6 ">
+                <div class="product border border-dark rounded-lg m-1 p-1">
+                    <a href="{% url 'main:product' product.pk %}" class="linkBuyProduct"><img
+                            src="/media/{{ product.image }}" alt="{{ product.name }}">
+                        <div class="nameOfProduct">{{ product.name }}
+                        </div>
+                    </a>
+                    <div class="numprice">{{ product.price }}<i class="currancy fas fa-ruble-sign"></i></div>
+                    <a class="btn btn-danger" href="{% url 'basket:add_product' product.pk %}">В корзину</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>

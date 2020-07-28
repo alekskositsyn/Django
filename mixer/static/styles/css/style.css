@@ -1,0 +1,416 @@
+.header {
+  height: 75px;
+  margin-bottom: 35px;
+}
+
+.header nav {
+  z-index: 2;
+}
+
+.header .form-inline {
+  margin-right: 10px;
+}
+
+.header .btn-outline-success {
+  color: black;
+  border-color: black;
+}
+
+.header .navbar-brand-name {
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+.header img[alt='logo'] {
+  margin-left: 10px;
+  width: 45px;
+  height: 45px;
+}
+
+.header .nav-item {
+  border-bottom: 2px solid #0000005b;
+}
+
+.header .nav-item:hover {
+  border-bottom: 2px solid #000;
+}
+
+.header .active {
+  border-bottom: 2px solid #000;
+}
+
+.header .user-entrance a {
+  margin-right: 5px;
+}
+
+.header .user-icon .user-entrance {
+  float: left;
+}
+
+.header .user-icon .user-entrance .name-user {
+  float: left;
+}
+
+.header .fa-heart {
+  margin-right: 10px;
+  margin-left: 5px;
+  font-size: 2em;
+}
+
+.header .fa-heart:hover {
+  color: #f44336;
+}
+
+.header .fa-heart:active {
+  opacity: 0;
+}
+
+.header .fa-shopping-basket {
+  margin-right: 10px;
+  margin-left: 5px;
+  font-size: 2em;
+}
+
+.header .fa-shopping-basket:hover {
+  color: #f44336;
+}
+
+.header .fa-shopping-basket:active {
+  opacity: 0;
+}
+
+.admin_container {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.admin_container .login {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.admin_container .login input {
+  padding: 0.17rem .75rem;
+}
+
+.admin_container .admin_menu {
+  float: right;
+}
+
+.admin_container .admin_menu .nav-item {
+  float: left;
+}
+
+.admin_container .admin_menu a {
+  text-transform: uppercase;
+  color: black;
+}
+
+.admin_container .admin_menu a:hover {
+  color: #6c6c6c;
+}
+
+.admin_container .user_role {
+  text-transform: uppercase;
+}
+
+.admin_container .user_role a {
+  font-size: 10px;
+}
+
+.admin_container .not_active {
+  opacity: 0.5;
+}
+
+.admin_container .user_record {
+  margin: 5px 5px 5px 5px;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.admin_container .user_record img {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.admin_container .new_user {
+  text-transform: uppercase;
+}
+
+.user_delete {
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 500px;
+  padding-left: 20px;
+}
+
+.user_delete form {
+  margin: 5px 5px 5px 5px;
+}
+
+.user_delete a {
+  margin: 5px 5px 5px 5px;
+}
+
+.basket_list {
+  width: 850px;
+  margin: 0 auto;
+}
+
+.basket_list .basket_record {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 5px 5px;
+}
+
+.basket_list .basket_record .delete {
+  float: right;
+  margin-top: 7px;
+}
+
+.basket_list .basket_summary {
+  float: right;
+}
+
+.basket_list span {
+  margin-left: 5px;
+}
+
+.basket_list img {
+  width: 50px;
+  height: 50px;
+}
+
+.basket_list a {
+  text-transform: uppercase;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.products-categories {
+  float: left;
+}
+
+.products-categories a {
+  font-weight: 400;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+}
+
+.products-categories a:hover {
+  text-decoration: none;
+}
+
+.product {
+  text-align: center;
+  height: 270px;
+}
+
+.product .nameOfProduct {
+  color: black;
+}
+
+.product .linkBuyProduct {
+  display: block;
+}
+
+.product .linkBuyProduct:hover {
+  text-decoration: none;
+}
+
+.product img {
+  width: 70%;
+  margin: 5px;
+}
+
+.range {
+  height: 100%;
+  top: 40px;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+}
+
+.range img[alt="carousel"] {
+  width: 750px;
+  height: 600px;
+}
+
+.range .product {
+  text-align: center;
+}
+
+.range .nameOfProduct {
+  text-align: center;
+  font-size: 18px;
+}
+
+.range img[alt="product"] {
+  width: 240px;
+  height: 240px;
+}
+
+.product-deal .leftside {
+  text-align: center;
+  top: 30px;
+  bottom: 70px;
+}
+
+.product-deal .leftside img[alt="bigProductImg"] {
+  width: 70%;
+}
+
+.product-deal .rightside {
+  text-align: center;
+  top: 30px;
+  bottom: 70px;
+}
+
+.product-deal .rightside .button_order_deal {
+  display: inline-block;
+  top: 15px;
+  bottom: 15px;
+  left: 20px;
+  right: 20px;
+  -webkit-box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+          box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+  border-radius: 35px;
+  background-color: #f44336;
+  width: 50%;
+  height: 3.8rem;
+}
+
+.product-deal .rightside .button_red_deal {
+  text-align: center;
+  display: block;
+  padding-top: 1rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24.01px;
+  text-transform: uppercase;
+  letter-spacing: 4.4px;
+}
+
+.product-deal .rightside .button_red_deal:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.product-deal .rightside .button_red_deal:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.product-deal .rightside .price {
+  text-align: center;
+}
+
+.product-deal .rightside .price .numprice {
+  font-size: 50px;
+}
+
+.product-deal .rightside .price .currancy {
+  margin-left: 5px;
+  font-size: 30px;
+}
+
+.product-deal .rightside .desc_product_deal {
+  margin-top: 50px;
+  color: #212121;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24.01px;
+  letter-spacing: 0.4px;
+}
+
+.clr {
+  height: 75px;
+}
+
+.slider-footer {
+  width: 100%;
+  padding-top: 20px;
+  height: 75px;
+  background-color: #f7f7f7;
+  margin: -75px auto 0;
+}
+
+.slider-footer .footer {
+  width: 100%;
+  background-color: #f7f7f7;
+  left: 40px;
+  right: 40px;
+}
+
+.slider-footer .copy {
+  text-align: center;
+  color: #6c6c6c;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.slider-footer .terms {
+  text-align: center;
+  color: #6c6c6c;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.slider-footer .social_links {
+  text-align: center;
+  margin-top: -12px;
+}
+
+.slider-footer .social_link {
+  text-decoration: none;
+  color: #6c6c6c;
+  font-size: 25px;
+}
+
+.slider-footer .social_link:hover {
+  color: black;
+}
+
+.contact-us {
+  height: 100%;
+  top: 40px;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+}
+
+.contact-us .btn {
+  color: #ffffff;
+  background-color: #f44336;
+  border: none;
+  -webkit-box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+          box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.contact-us .btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.contact-us .btn:hover {
+  color: #e0e0e0;
+}
