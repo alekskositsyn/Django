@@ -11,4 +11,5 @@ urlpatterns = [
     re_path(r'^category/(?P<pk>\d+)/products/(?P<page>\d+)/$', mainapp.category_products, name='category_products'),
     path('contacts/', mainapp.contacts, name='contacts'),
     re_path(r'^product/(?P<pk>\d+)/$', mainapp.product, name='product'),
+    re_path(r'^product/detail/(?P<pk>\d+)/async/$', mainapp.product_detail_async),
 ]

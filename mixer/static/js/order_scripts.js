@@ -90,8 +90,36 @@ window.onload = function () {
     });
 
     $orderForm.on('change', 'select', function (event) {
-        let target = event.target;
-        console.log(target);
+        let oderItemIndex = parseInt(event.target.name.replace('orderitems-', '').replace('-product'));
+        let productPk = event.target.value;
+        // console.log(event.target.parentNode.parentNode.childNodes[5]);
+        $.ajax({
+            url: '/product/detail/' + productPk + '/async/',
+            success: function (data) {
+                // let priceElement = document.querySelector('.orderitems-' + oderItemIndex + '-price');
+                //<span class="orderitems-0-price"></span>
+                // console.log(data.product_price);
+                // let priceElement = document.createElement('span');
+                // priceElement.classList.add('orderitems-' + oderItemIndex + '-price');
+                // priceElement.innerHTML = data.product_price.replace('.', ',');
+                priceArr[oderItemIndex] = parseFloat(data.product_price);
+                if (isNaN(quantityArr[oderItemIndex])) {
+                    quantityArr[oderItemIndex] = 0;
+                }
+                let priceHtml = '<span>' +
+                    data.product_price.toString().replace('.', ',') +
+                    '</span> руб';
+                let currentTR = $('.order_form table').find('tr:eq(' + (oderItemIndex + 1) + ')');
+                currentTR.find('td:eq(2)').html(priceHtml);
+                let $productQuantity = currentTR.find('input[type="number"]');
+                if (!$productQuantity.val() || isNaN($productQuantity.val())) {
+                    $productQuantity.val(0);
+                }
+                orderSummaryUpdate(
+                    priceArr[oderItemIndex],
+                    parseInt($productQuantity.val()));
+            }
+        });
     });
 
 };

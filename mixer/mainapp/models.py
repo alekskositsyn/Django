@@ -24,3 +24,7 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'
+
+    @staticmethod
+    def get_active_items():
+        return Product.objects.filter(category__is_active=True, is_active=True)
