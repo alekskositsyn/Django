@@ -36,6 +36,11 @@ function deleteOrderItem(row) {
     let targetName = row[0].querySelector('input[type="number"]').name;
     orderitemNum = parseInt(targetName.replace('orderitems-', '').replace('-quantity', ''));
     deltaQuantity = -quantityArr[orderitemNum];
+    quantityArr[orderitemNum] = 0;
+    if (!isNaN(targetName[orderitemNum]) && !isNaN(deltaQuantity)) {
+        orderSummaryUpdate(targetName[orderitemNum], deltaQuantity);
+    }
+
     orderSummaryUpdate(priceArr[orderitemNum], deltaQuantity);
 }
 
@@ -96,12 +101,6 @@ window.onload = function () {
         $.ajax({
             url: '/product/detail/' + productPk + '/async/',
             success: function (data) {
-                // let priceElement = document.querySelector('.orderitems-' + oderItemIndex + '-price');
-                //<span class="orderitems-0-price"></span>
-                // console.log(data.product_price);
-                // let priceElement = document.createElement('span');
-                // priceElement.classList.add('orderitems-' + oderItemIndex + '-price');
-                // priceElement.innerHTML = data.product_price.replace('.', ',');
                 priceArr[oderItemIndex] = parseFloat(data.product_price);
                 if (isNaN(quantityArr[oderItemIndex])) {
                     quantityArr[oderItemIndex] = 0;
