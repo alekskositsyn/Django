@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -40,6 +41,7 @@ def login(request):
     return render(request, 'authapp/login.html', context)
 
 
+@login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('main:home'))
@@ -90,6 +92,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         instance.shopuserprofile.save()
 
 
+@login_required
 @transaction.atomic
 def update(request):
     if request.method == 'POST':

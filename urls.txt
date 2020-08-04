@@ -1,0 +1,17 @@
+http://127.0.1.1/
+http://127.0.1.1/category/0/products/
+http://127.0.1.1/category/1/products/
+http://127.0.1.1/category/2/products/
+http://127.0.1.1/category/3/products/
+http://127.0.1.1/contacts/
+http://127.0.1.1/product/1/
+http://127.0.1.1/product/2/
+http://127.0.1.1/product/3/
+http://127.0.1.1/product/4/
+http://127.0.1.1/basket/
+http://127.0.1.1/orders/
+http://127.0.1.1/auth/update/
+http://127.0.1.1/orders/order/update/1/
+http://127.0.1.1/orders/order/update/2/
+http://127.0.1.1/orders/order/update/3/
+http://127.0.1.1/orders/order/update/5/
