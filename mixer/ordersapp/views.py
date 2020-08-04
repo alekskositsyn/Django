@@ -1,8 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
+
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from ordersapp.forms import OrderForm, OrderItemForm
@@ -15,6 +18,10 @@ class OrderList(ListView):
     def get_queryset(self):
         # return self.model.objects.filter(user=self.request.user)
         return self.request.user.order_set.all()
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 class OrderCreate(CreateView):
