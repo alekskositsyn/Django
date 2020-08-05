@@ -29,6 +29,10 @@ class OrderCreate(CreateView):
     form_class = OrderForm
     success_url = reverse_lazy('orders:index')
 
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         OrderFormSet = inlineformset_factory(
@@ -81,6 +85,10 @@ class OrderCreate(CreateView):
 class OrderRead(DetailView):
     model = Order
 
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'заказ/просмотр'
@@ -91,6 +99,10 @@ class OrderUpdate(UpdateView):
     model = Order
     form_class = OrderForm
     success_url = reverse_lazy('orders:index')
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
@@ -130,6 +142,10 @@ class OrderUpdate(UpdateView):
 class OrderDelete(DeleteView):
     model = Order
     success_url = reverse_lazy('orders:index')
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 def order_forming_complete(request, pk):
