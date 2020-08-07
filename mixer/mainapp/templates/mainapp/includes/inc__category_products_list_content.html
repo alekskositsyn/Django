@@ -1,0 +1,41 @@
+{% load static %}
+<div class="row justify-content-center">
+    <div class="col-lg-3 col-md categories-menu">
+        {% include 'mainapp/includes/inc__products_categories.html' %}
+    </div>
+    <div class="col-lg-8 products">
+        <div class="title clearfix">
+            <h2>Категория: "{{ category.name|title }}"</h2>
+            <div class="paginator">
+                {% if products.has_previous %}
+                    <a href="{% url 'main:category_products' category.pk products.previous_page_number %}">
+                        <
+                    </a>
+                {% endif %}
+                <span class="current">страница {{ products.number }} из {{ products.paginator.num_pages }}</span>
+                {% if products.has_next %}
+                    <a href="{% url 'main:category_products' category.pk products.next_page_number %}">
+                        >
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            {% for product in products %}
+                <div class="col-lg-3 col-md-6 ">
+                    <div class="product border border-dark rounded-lg m-1 p-1">
+                        <a href="{% url 'main:product' product.pk %}" class=" linkBuyProduct"><img
+                                src="/media/{{ product.image }}" alt="{{ product.name }}">
+                            <div class="nameOfProduct">{{ product.name }}
+                            </div>
+                        </a>
+                        <div class="numprice">{{ product.price }}<i class="currancy fas fa-ruble-sign"></i></div>
+                        <a class="btn btn-danger" href="{% url 'basket:add_product' product.pk %}">В корзину</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+

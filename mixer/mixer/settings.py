@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q(fi6br!0b5@o1mhpur!_2_3q#g1@6mom#@n^9k8+u$&fvx*fk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     'ordersapp',
 
     # profiler
-    'debug_toolbar',
-    'template_profiler_panel',
-    'django_extensions',
+    # 'debug_toolbar',
+    # 'template_profiler_panel',
+    # 'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # profiler
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',  # profiler
 ]
 
 ROOT_URLCONF = 'mixer.urls'

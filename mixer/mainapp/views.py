@@ -3,6 +3,8 @@ import random
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
+
 from mainapp.models import ProductCategory, Product
 from django.core.cache import cache
 
@@ -115,7 +117,7 @@ def category_products(request, pk, page=1):
     else:
         category = get_category(pk)
         products = get_products_in_product_category(pk)
-    products_paginator = Paginator(products, 6)
+    products_paginator = Paginator(products, 8)
     try:
         products = products_paginator.page(page)
     except PageNotAnInteger:
@@ -130,6 +132,37 @@ def category_products(request, pk, page=1):
         'category': category,
     }
     return render(request, 'mainapp/category_products.html', context)
+
+
+def category_products_ajax(request, pk, page=1):
+    if request.is_ajax():
+        if pk == '0':
+            category = {'pk': 0, 'name': 'все'}
+            products = get_products()
+        else:
+            category = get_category(pk)
+            products = get_products_in_product_category(pk)
+        products_paginator = Paginator(products, 8)
+        try:
+            products = products_paginator.page(page)
+        except PageNotAnInteger:
+            products = products_paginator.page(1)
+        except EmptyPage:
+            products = products_paginator.page(products.paginator.num_pages)
+
+        context = {
+            'page_title': 'продукты по категории',
+            'products_categories': get_links_menu(),
+            'products': products,
+            'category': category,
+        }
+
+        result = render_to_string(
+            'mainapp/includes/inc__category_products_list_content.html',
+            context=context,
+            request=request)
+
+        return JsonResponse({'result': result})
 
 
 def contacts(request):
