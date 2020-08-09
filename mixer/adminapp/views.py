@@ -1,16 +1,16 @@
 from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponseRedirect, request
-from django.shortcuts import render, get_object_or_404
-
-from authapp.models import ShopUser
+from django.db import connection
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
-from adminapp.forms import AdminProductUpdateForm
-from adminapp.forms import AdminProductCategoryUpdateForm
-from adminapp.forms import AdminShopUserCreatForm
-from adminapp.forms import AdminShopUserUpdateForm
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
+from adminapp.forms import AdminProductCategoryUpdateForm
+from adminapp.forms import AdminProductUpdateForm
+from adminapp.forms import AdminShopUserCreatForm
+from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product
 
 
@@ -174,7 +174,7 @@ class ProductCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
         return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
 
 
-class ProductDetail(DetailView,PageTitleMixin):
+class ProductDetail(DetailView, PageTitleMixin):
     model = Product
     pk_url_kwarg = 'product_pk'
     page_title = 'продукт'
@@ -252,3 +252,20 @@ class ProductRestore(SuperUserOnlyMixin, DeleteView):
     def get_success_url(self):
         return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
 
+
+def db_profile_by_type(prefix, query_type, queries):
+    update_queries = list(filter(lambda x: query_type in x['sql'], queries))
+    print(f'db_profile {query_type} for {prefix}:')
+    [print(query['sql']) for query in update_queries]
+
+
+@receiver(post_save, sender=ProductCategory)
+def product_is_active_update_productcategory_save(sender, instance, **kwargs):
+    """Если поле в категории is_active изменится, функция меняет в поле статус всех товаров измененной категории"""
+    if instance.pk:
+        if instance.is_active:
+            instance.product_set.update(is_active=True)
+        else:
+            instance.product_set.update(is_active=False)
+
+        db_profile_by_type(sender, 'UPDATE', connection.queries)
