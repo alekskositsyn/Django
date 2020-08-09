@@ -5,15 +5,13 @@ from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import render_to_string
+from django.urls import reverse
 
 from adminapp.views import db_profile_by_type
 from basketapp.models import Basket
-from django.template.loader import render_to_string
-from django.urls import reverse
 from mainapp.models import Product
-
 from mixer.settings import LOGIN_URL
-from ordersapp.models import OrderItem
 
 
 @login_required
@@ -55,6 +53,7 @@ def change(request, pk, quantity):
         basket = get_object_or_404(Basket, pk=pk)
         if quantity <= 0:
             basket.delete()
+
         else:
             basket.quantity = quantity
             basket.save()
