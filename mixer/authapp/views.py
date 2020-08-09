@@ -62,7 +62,7 @@ def register(request):
     else:
         form = ShopUserRegisterForm()
     context = {
-        'title': 'Проверьте правильность заполнения данных',
+        'title': 'регистрация пользователя',
         'form': form,
     }
     return render(request, 'authapp/register.html', context)
