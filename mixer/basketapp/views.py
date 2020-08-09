@@ -1,9 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from django.db import connection
+from django.db.models import F
 from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 
+from adminapp.views import db_profile_by_type
 from basketapp.models import Basket
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -27,10 +30,14 @@ def add_product(request, pk):
     # basket = request.user.basket_set.filter(product=pk).first()
 
     if not basket:
-        basket = Basket(user=request.user, product=product)
-
-    basket.quantity += 1
-    basket.save()
+        Basket.objects.create(user=request.user, product=product, quantity=1)
+    else:
+        # basket.quantity += 1
+        # python code -> sql -> db -> python obj -> python logic -> sql -> db
+        # F-object -> db level
+        basket.quantity = F('quantity') + 1
+        basket.save()
+        db_profile_by_type(basket, 'UPDATE', connection.queries)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
