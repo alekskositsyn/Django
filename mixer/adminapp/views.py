@@ -99,6 +99,7 @@ class ProductCategoryUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
     success_url = reverse_lazy('adminapp:categories')
 
     """ Функция применяет скидку к цене продукта, если скидка есть"""
+
     def form_valid(self, form):
         if 'discount' in form.cleaned_data:
             discount = form.cleaned_data['discount']
@@ -264,6 +265,8 @@ class ProductRestore(SuperUserOnlyMixin, DeleteView):
 
 
 def db_profile_by_type(prefix, query_type, queries):
+    """отфильтровывает запросы определенного типа
+    («UPDATE», «DELETE», «SELECT», «INSERT INTO») и выводит их текст в консоль"""
     update_queries = list(filter(lambda x: query_type in x['sql'], queries))
     print(f'db_profile {query_type} for {prefix}:')
     [print(query['sql']) for query in update_queries]
