@@ -98,9 +98,8 @@ class ProductCategoryUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
     page_title = 'категории/редактирование'
     success_url = reverse_lazy('adminapp:categories')
 
-    """ Функция применяет скидку к цене продукта, если скидка есть"""
-
     def form_valid(self, form):
+        """ Функция применяет скидку к цене продукта, если скидка есть"""
         if 'discount' in form.cleaned_data:
             discount = form.cleaned_data['discount']
             if discount:
@@ -109,7 +108,7 @@ class ProductCategoryUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ProductCategoryDeleteVeiw(SuperUserOnlyMixin, DeleteView):
+class ProductCategoryDeleteView(SuperUserOnlyMixin, DeleteView):
     model = ProductCategory
     success_url = reverse_lazy('adminapp:categories')
 
@@ -149,33 +148,6 @@ class CategoryProductsListView(ListView):
         return context
 
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def product_create(request, pk):
-#     category = get_object_or_404(ProductCategory, pk=pk)
-#     if request.method == 'POST':
-#         form = AdminProductUpdateForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse(
-#                 'my_admin:category_products',
-#                 kwargs={'pk': pk}
-#             ))
-#     else:
-#         form = AdminProductUpdateForm(
-#             initial={
-#                 'category': category,
-#                 # 'quantity': 10,
-#                 # 'price': 157.9,
-#             }
-#         )
-#
-#     context = {
-#         'title': 'продукты/создание',
-#         'form': form,
-#         'category': category,
-#     }
-#     return render(request, 'adminapp/product_form.html', context)
-
 class ProductCreateView(SuperUserOnlyMixin, PageTitleMixin, CreateView):
     model = Product
     form_class = AdminProductUpdateForm
@@ -191,28 +163,6 @@ class ProductDetail(DetailView, PageTitleMixin):
     page_title = 'продукт'
 
 
-# @user_passes_test(lambda u: u.is_superuser)
-# def product_update(request, pk):
-#     product = get_object_or_404(Product, pk=pk)
-#     if request.method == 'POST':
-#         form = AdminProductUpdateForm(request.POST, request.FILES, instance=product)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse(
-#                 'my_admin:category_products',
-#                 kwargs={'pk': product.category.pk}
-#             ))
-#     else:
-#         form = AdminProductUpdateForm(instance=product)
-#
-#     context = {
-#         'title': 'продукты/редактирование',
-#         'form': form,
-#         'category': product.category,
-#     }
-#     return render(request, 'adminapp/templates/mainapp/product_form.html', context)
-
-
 class ProductUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
     model = Product
     form_class = AdminProductUpdateForm
@@ -220,22 +170,6 @@ class ProductUpdateView(SuperUserOnlyMixin, PageTitleMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('my_admin:category_products', kwargs={'pk': self.object.category.pk})
-
-
-# @user_passes_test(lambda u: u.is_superuser)
-# def product_delete(request, pk):
-#     obj = get_object_or_404(Product, pk=pk)
-#
-#     if request.method == 'POST':
-#         obj.is_active = not obj.is_active
-#         obj.save()
-#         return HttpResponseRedirect(reverse('my_admin:category_products', kwargs={'pk': obj.category.pk}))
-#
-#     context = {
-#         'title': 'продукты/удаление',
-#         'object': obj,
-#     }
-#     return render(request, 'adminapp/product_confirm_delete.html', context)
 
 
 class ProductDelete(SuperUserOnlyMixin, DeleteView):
@@ -265,7 +199,7 @@ class ProductRestore(SuperUserOnlyMixin, DeleteView):
 
 
 def db_profile_by_type(prefix, query_type, queries):
-    """отфильтровывает запросы определенного типа
+    """Отфильтровывает запросы определенного типа
     («UPDATE», «DELETE», «SELECT», «INSERT INTO») и выводит их текст в консоль"""
     update_queries = list(filter(lambda x: query_type in x['sql'], queries))
     print(f'db_profile {query_type} for {prefix}:')
@@ -274,7 +208,8 @@ def db_profile_by_type(prefix, query_type, queries):
 
 @receiver(post_save, sender=ProductCategory)
 def product_is_active_update_productcategory_save(sender, instance, **kwargs):
-    """Если поле в категории is_active изменится, функция меняет в поле статус всех товаров измененной категории"""
+    """Если поле в категории is_active изменится,
+    функция меняет в поле статус всех товаров измененной категории"""
     if instance.pk:
         if instance.is_active:
             instance.product_set.update(is_active=True)

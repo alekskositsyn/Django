@@ -1,9 +1,7 @@
 node_modules/
 dist/
 django2.2/
-.idea/dictionaries
-.idea/inspectionProfiles
-.idea
+.idea/
 .vscode
 mixer/adminapp/__pycache__/__init__.cpython-36.pyc
 mixer/adminapp/__pycache__/admin.cpython-36.pyc

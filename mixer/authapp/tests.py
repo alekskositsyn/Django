@@ -9,8 +9,6 @@ class TestUserManagement(TestCase):
     fixtures = ['authapp.json', 'mainapp.json']
 
     def setUp(self):
-        # call_command('flush', '--noinput')
-        # call_command('loaddata', 'test_db.json')
         self.client = Client()
 
         self.superuser = ShopUser.objects.create_superuser(
@@ -40,13 +38,6 @@ class TestUserManagement(TestCase):
 
         # данные пользователя
         self.client.login(username='tarantino', password='geekbrains')
-        # response = self.client.post(
-        #     '/',
-        #     data={
-        #         'username': 'django',
-        #         'password': 'geekbrains',
-        #     }
-        # )  # code -> 302
 
         # логинимся
         response = self.client.get('/auth/login/')
@@ -152,7 +143,3 @@ class TestUserManagement(TestCase):
         self.assertFormError(
             response, 'form', 'age', 'Вы слишком молоды!'
         )
-
-    # def tearDown(self):
-    #     call_command('sqlsequencereset', 'mainapp', 'authapp', 'ordersapp', \
-    #                  'basketapp')

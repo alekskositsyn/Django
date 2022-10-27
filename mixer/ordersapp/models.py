@@ -2,16 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
-
 from mainapp.models import Product
-
-
-# class OrderItemQuerySet(models.QuerySet):
-#     def delete(self, *args, **kwargs):
-#         for object in self:
-#             object.product.quantity += object.quantity
-#             object.product.save()
-#         return super().delete()
 
 
 class Order(models.Model):
@@ -70,17 +61,7 @@ class Order(models.Model):
         items = self.orderitems.all()
         return sum(list(map(lambda x: x.quantity * x.product.price, items)))
 
-    # переопределяем метод, удаляющий объект
-    # def delete(self):
-    #     for item in self.orderitems.select_related():
-    #         item.product.quantity += item.quantity
-    #         item.product.save()
-    #
-    #     self.is_active = False
-    #     self.save()
 
-
-# MANY-TO-MANY
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,
                               related_name="orderitems",

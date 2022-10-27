@@ -18,7 +18,6 @@ class ShopUser(AbstractUser):
     age = models.PositiveIntegerField(verbose_name='возраст', null=True)
     avatar = models.ImageField(upload_to='users_avatar', blank=True)
     email = models.EmailField(verbose_name='email address', blank=True, unique=True)
-
     activation_key = models.CharField(max_length=128, blank=True)
     activation_key_expires = models.DateTimeField(default=get_activation_key_express)
 
@@ -48,7 +47,7 @@ class ShopUserProfile(models.Model):
         (MALE, 'мужской'),
         (FEMALE, 'женский'),
     )
-    # gender_as_dict = dict(GENDER_CHOICES)
+
     user = models.OneToOneField(ShopUser, on_delete=models.CASCADE,
                                 primary_key=True)
     tagline = models.CharField(verbose_name='теги', max_length=128,

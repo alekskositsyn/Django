@@ -4,14 +4,11 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
-
 from mainapp.models import ProductCategory, Product
 from django.core.cache import cache
-
 from mixer.settings import LOW_CACHE
 
 
-# from doc
 def get_links_menu():
     if LOW_CACHE:
         key = 'links_menu'

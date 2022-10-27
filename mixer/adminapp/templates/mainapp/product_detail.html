@@ -16,42 +16,41 @@
                     <h4>{{ product.name }}</h4>
                 </div>
                 <div class="price">
-                    <div class="numprice"><strong>Цена </strong>{{ object.price }}<i
-                            class="currancy fas fa-ruble-sign"></i></div>
-                    <div class="currancy"></div>
-                    <div class="numprice"><strong>Количество на складе </strong>{{ object.quantity }}</div>
-                    <div class="numprice"><strong>В каталоге </strong>{% if object.is_active %}да{% else %}
-                        нет{% endif %}
+                    <div class="numprice"><strong>Цена </strong>{{ object.price }}
+                        <div class="currancy d-inline-block"><i class="fa fa-rub" aria-hidden="true"></i></div>
+                        <div class="numprice"><strong>Количество на складе </strong>{{ object.quantity }}</div>
+                        <div class="numprice"><strong>В каталоге </strong>{% if object.is_active %}да{% else %}
+                            нет{% endif %}
+                        </div>
+                    </div>
+                    <div class="button_edit">
+                        <a href="{% url 'my_admin:product_update' object.pk %}" class="btn btn-primary">
+                            Редактировать
+                        </a>
+                    </div>
+                    <div class="">
+                        {% if object.is_active %}
+                            <a href="{% url 'my_admin:product_delete' object.pk %}" class="btn btn-danger">
+                                Удалить
+                            </a>
+                        {% else %}
+                            <a href="{% url 'my_admin:product_delete' object.pk %}" class="btn btn-success">
+                                Восстановить
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="button_back">
+                        <a href="{% url 'my_admin:category_products' object.category.pk %}" class="btn btn-secondary">
+                            Назад к продуктам
+                        </a>
                     </div>
                 </div>
-                <div class="button_edit">
-                    <a href="{% url 'my_admin:product_update' object.pk %}" class="btn btn-primary">
-                        Редактировать
-                    </a>
+                <div class="desc-product-deal">
+                    <strong>Краткая информация</strong>
+                    <p>{{ object.short_desc }}</p>
+                    <strong>Подробная информация</strong>
+                    <p>{{ object.description }}</p>
                 </div>
-                <div class="">
-                    {% if object.is_active %}
-                        <a href="{% url 'my_admin:product_delete' object.pk %}" class="btn btn-danger">
-                            Удалить
-                        </a>
-                    {% else %}
-                        <a href="{% url 'my_admin:product_delete' object.pk %}" class="btn btn-success">
-                            Восстановить
-                        </a>
-                    {% endif %}
-                </div>
-                <div class="button_back">
-                    <a href="{% url 'my_admin:category_products' object.category.pk %}" class="btn btn-secondary">
-                        Назад к продуктам
-                    </a>
-                </div>
-            </div>
-            <div class="desc-product-deal">
-                <strong>Краткая информация</strong>
-                <p>{{ object.short_desc }}</p>
-                <strong>Подробная информация</strong>
-                <p>{{ object.description }}</p>
             </div>
         </div>
-    </div>
 {% endblock %}

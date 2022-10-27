@@ -7,7 +7,13 @@
 ```bash 
 python3 -m venv env
 ```
-Перейти в окружение:
+Активировать окружение:
 ```bash 
 source env/bin/activate
 ```
+Скачать зависимости проекта из requirements.txt:
+```bash
+pip install -r requirements.txt
+```
+
+

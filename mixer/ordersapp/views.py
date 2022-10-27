@@ -5,9 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
-
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-
 from ordersapp.forms import OrderForm, OrderItemForm
 from ordersapp.models import Order, OrderItem
 
@@ -16,7 +14,6 @@ class OrderList(ListView):
     model = Order
 
     def get_queryset(self):
-        # return self.model.objects.filter(user=self.request.user)
         return self.request.user.order_set.all()
 
     @method_decorator(login_required())
@@ -48,13 +45,10 @@ class OrderCreate(CreateView):
                     Order, OrderItem, form=OrderItemForm, extra=len(basket_items)
                 )
                 formset = OrderFormSet()
-                # for num, form in enumerate(formset.forms):
-                # zip(), filter(), map()
                 for form, basket_item in zip(formset.forms, basket_items):
                     form.initial['product'] = basket_item.product
                     form.initial['quantity'] = basket_item.quantity
                     form.initial['price'] = basket_item.product.price
-                # basket_items.delete()
             else:
                 formset = OrderFormSet()
 
@@ -72,10 +66,7 @@ class OrderCreate(CreateView):
                 orderitems.instance = self.object
                 orderitems.save()
             self.request.user.basket.all().delete()
-            # for item in self.request.user.basket.all():  # -> many queries
-            #     item.delete()  # object method call
 
-        # удаляем пустой заказ
         if self.object.get_total_cost() == 0:
             self.object.delete()
 
@@ -152,5 +143,4 @@ def order_forming_complete(request, pk):
     order = get_object_or_404(Order, pk=pk)
     order.status = Order.SENT_TO_PROCEED
     order.save()
-    # return HttpResponseRedirect(reverse('orders:index'))
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

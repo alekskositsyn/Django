@@ -16,8 +16,7 @@ from authapp.models import ShopUser, ShopUserProfile
 
 
 def login(request):
-    # next = request.GET['next'] if 'next' in request.GET.keys() else ''
-    next = request.GET.get('next', '')
+    next_to = request.GET.get('next', '')
     if request.method == 'POST':
         form = ShopUserLoginForm(data=request.POST)
         if form.is_valid():
@@ -29,14 +28,13 @@ def login(request):
                 if 'next' in request.POST.keys():
                     return HttpResponseRedirect(request.POST['next'])
                 else:
-                    return HttpResponseRedirect(reverse('main:home'))
+                    return HttpResponseRedirect(reverse('mainapp:home'))
     else:
         form = ShopUserLoginForm()
-    # form = ShopUserLoginForm()
     context = {
         'title': 'вход в ситему',
         'form': form,
-        'next': next,
+        'next': next_to,
     }
     return render(request, 'authapp/login.html', context)
 
@@ -44,7 +42,7 @@ def login(request):
 @login_required
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main:home'))
+    return HttpResponseRedirect(reverse('mainapp:home'))
 
 
 def register(request):
@@ -58,7 +56,7 @@ def register(request):
             else:
                 print('ошибка отправки сообщения')
             # return HttpResponseRedirect(reverse('auth:login'))
-            return HttpResponseRedirect(reverse('main:home'))
+            return HttpResponseRedirect(reverse('mainapp:home'))
     else:
         form = ShopUserRegisterForm()
     context = {
@@ -81,7 +79,7 @@ def verify(request, email, activation_key):
         return render(request, 'authapp/verification.html')
     except Exception as e:
         print(f'error activation user : {e.args}')
-        return HttpResponseRedirect(reverse('main:home'))
+        return HttpResponseRedirect(reverse('mainapp:home'))
 
 
 @receiver(post_save, sender=ShopUser)
@@ -107,8 +105,7 @@ def update(request):
 
         if form.is_valid() and profile_form.is_valid():
             form.save()
-            # profile_form.save()
-            return HttpResponseRedirect(reverse('auth:update'))
+            return HttpResponseRedirect(reverse('authapp:update'))
     else:
         form = ShopUserUpdateForm(instance=request.user)
         profile_form = ShopUserProfileUpdateForm(instance=request.user.shopuserprofile)

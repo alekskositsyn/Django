@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
-
 from adminapp.views import db_profile_by_type
 from basketapp.models import Basket
 from mainapp.models import Product
@@ -25,14 +24,10 @@ def add_product(request, pk):
         return HttpResponseRedirect(reverse('main:product', kwargs={'pk': pk}))
     product = get_object_or_404(Product, pk=pk)
     basket = Basket.objects.filter(user=request.user, product=product).first()
-    # basket = request.user.basket_set.filter(product=pk).first()
 
     if not basket:
         Basket.objects.create(user=request.user, product=product, quantity=1)
     else:
-        # basket.quantity += 1
-        # python code -> sql -> db -> python obj -> python logic -> sql -> db
-        # F-object -> db level
         basket.quantity = F('quantity') + 1
         basket.save()
         db_profile_by_type(basket, 'UPDATE', connection.queries)
@@ -58,24 +53,15 @@ def change(request, pk, quantity):
             basket.quantity = quantity
             basket.save()
             print('ajax', pk, quantity)
-            # basket_items = Basket.objects.filter(user=request.user). \
-            #     order_by('product__category')
             result = render_to_string('basketapp/includes/inc__basket_list.html',
                                       request=request
                                       )
 
             return JsonResponse({'result': result})
 
-            # return JsonResponse({
-            #     'total_cost': basket.total_cost,
-            #     'total_quantity': basket.quantity,
-            #     'product_cost': basket.product_cost,
-            # })
-
 
 @receiver(pre_save, sender=Basket)
 def product_quantity_update_save(sender, instance, **kwargs):
-    # print(f'pre_save: {sender}')
     if instance.pk:
         instance.product.quantity -= instance.quantity - \
                                      sender.get_item(instance.pk).quantity
@@ -86,6 +72,5 @@ def product_quantity_update_save(sender, instance, **kwargs):
 
 @receiver(pre_delete, sender=Basket)
 def product_quantity_update_delete(sender, instance, **kwargs):
-    # print(f'pre_delete: {sender}')
     instance.product.quantity += instance.quantity
     instance.product.save()
