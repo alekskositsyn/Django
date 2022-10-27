@@ -3,8 +3,8 @@
 
 {% block container %}
     <div class="h2 text-center head">
-            Вход в систему
-        </div>
+        Вход в систему
+    </div>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         {% if next %}
@@ -21,6 +21,14 @@
     <a href="{% url 'main:home' %}"
        class="btn btn-round form-control">
         На главную
+    </a>
+    <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/"
+       class="btn btn-round form-control">
+        Вход через ВКонтакте
+    </a>
+    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/"
+       class="btn btn-round form-control">
+        Вход через Google+
     </a>
 
 {% endblock %}

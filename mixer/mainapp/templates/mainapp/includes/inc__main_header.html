@@ -2,26 +2,18 @@
 <header class="header ">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'main:home' %}">
-            <img src="{% static 'img/logo.png' %}" class="logo d-inline-block align-top" alt="logo" loading="lazy"><span
-                class="navbar-brand-name mb-0 h2">Mixer</span></a>
+            <img src="{% static 'img/logo.png' %}"
+                 class="logo d-inline-block align-top" alt="logo" loading="lazy">
+            <span class="navbar-brand-name mb-0 h2">Mixer</span>
+        </a>
         <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+           aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </a>
-
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                {#                {% for item in main_header_menu %}#}
-                {#                    <li class="{% if request.resolver_match.url_name == item.href %} active {% endif %} nav-item">#}
-                {#                        <a class=" nav-link "#}
-                {#                           href="{% url 'main:'|add:item.href %}">{{ item.name }}<span применение шаблонного фильтра add#}
-                {#                                class="sr-only">(current)</span></a>#}
-                {#                    </li>#}
-                {#                {% endfor %}#}
-
-
                 <li class="nav-item active">
-                    <a class=" nav-link " href="{% url 'main:catalog' %}">Продукты<span
+                    <a class=" nav-link " href="{% url 'main:category_products' 0 %}">Продукты<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -34,54 +26,59 @@
             <div class="user-icon">
                 <div class="user-entrance">
                     {% if user.is_authenticated %}
-                    <a class="name-user btn btn-outline-secondary" href="{% url 'auth:update' %}" class="">
-                        {{ user.first_name|default:'пользователь'|title }}
-                    </a>
+                        <div class="user-btn dropdown">
+                            <a class=" btn btn-outline-dark dropdown-toggle" href="#" data-toggle="dropdown"
+                               aria-expanded="false">
+                                {{ user.first_name|default:'пользователь'|title }}
+                                <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{% url 'auth:update' %}">
+                                    профиль
+                                </a>
+                                <a class="dropdown-item" href="{% url 'orders:index' %}">
+                                    заказы
+                                </a>
+                            </div>
+                        </div>
                     {% endif %}
                     {% if user.is_superuser %}
-                    <a class="admin btn btn-outline-secondary" href="{% url 'my_admin:users' %}" class="">
-                        админка
-                    </a>
+                        <a class="admin btn btn-outline-secondary" href="{% url 'my_admin:users' %}" class="">
+                            админка
+                        </a>
                     {% endif %}
                     {% if user.is_authenticated %}
-                    <a class="login_status btn btn-outline-secondary" href="{% url 'auth:logout' %}">
-                        выход
-                    </a>
+                        <a class="login_status btn btn-outline-secondary" href="{% url 'auth:logout' %}">
+                            выход
+                        </a>
                     {% else %}
-                    <a class="login_status btn btn-outline-secondary" href="{% url 'auth:login' %}">
-                        вход
-                    </a>
+                        <a class="login_status btn btn-outline-secondary" href="{% url 'auth:login' %}">
+                            вход
+                        </a>
                     {% endif %}
 
                 </div>
-                <!-- <i class="fa fa-user-o fa-2x" aria-hidden="true"></i>    -->
             </div>
             <div class="heart">
-
                 <span class="badge badge-pill badge-danger">
                     {% if basket %}
-                    {{ basket.0.total_quantity }}
+                        {{ basket.0.total_quantity }}
                     {% else %}
-                    {{ '0' }}
+                        {{ '0' }}
                     {% endif %}
                 </span>
-
-                <a class="btn" href="#"><i class="far fa-heart fa-2x"></i></a>
+                <a class="btn" href="#"><i class="fa fa-heart-o fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="basket">
-
                 <span class="badge badge-pill badge-danger">
                     {% if basket %}
-                    {{ basket.0.total_quantity }}
+                        {{ basket.0.total_quantity }}
                     {% else %}
-                    {{ '0' }}
+                        {{ '0' }}
                     {% endif %}
                 </span>
-
-                <a class="btn" href="{% url 'basket:index' %}"><i class="fas fa-shopping-basket fa-2x"></i></a>
+                <a class="btn" href="{% url 'basket:index' %}"><i class="fa-shopping-basket fa " aria-hidden="true"></i></a>
             </div>
-
-        </div>
         </div>
     </nav>
 </header>

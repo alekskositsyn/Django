@@ -1,18 +1,18 @@
 {% load static %}
+
 {% if basket %}
     {% for item in basket %}
         <div class="basket_record">
             <img class="rounded border"
                  src="/media/{{ item.product.image }}"
                  alt="{{ item.product.short_desc }}">
-            {% comment %} <span class="category_name">{{ item.product.category.name }}</span> {% endcomment %}
             <span class="product_name">{{ item.product.name }}</span>
             <span class="product_price">{{ item.product.price }}&nbspруб</span>
             <input type="number" name="{{ item.pk }}" min="0" max="{{ item.product.quantity }}"
                    value="{{ item.quantity }}">
             <span class="product_cost">{{ item.product_cost }}&nbspруб</span>
 
-            <a class="btn btn-outline-dark delete" href="{% url 'basket:delete_product' item.pk %}" >
+            <a class="btn btn-outline-dark delete" href="{% url 'basket:delete_product' item.pk %}">
                 удалить
             </a>
         </div>
@@ -25,7 +25,6 @@
 {% else %}
     <h4>Корзина пуста</h4>
 {% endif %}
-
-<a class="btn btn-dark" href="{% url 'main:home' %}" >
+<a class="btn btn-dark" href="{% url 'main:home' %}">
     на главную
 </a>

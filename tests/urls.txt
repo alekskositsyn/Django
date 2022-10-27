@@ -1,0 +1,17 @@
+http://10.0.2.4/
+http://10.0.2.4/category/0/products/
+http://10.0.2.4/category/1/products/
+http://10.0.2.4/category/2/products/
+http://10.0.2.4/category/3/products/
+http://10.0.2.4/contacts/
+http://10.0.2.4/product/1/
+http://10.0.2.4/product/2/
+http://10.0.2.4/product/3/
+http://10.0.2.4/product/4/
+http://10.0.2.4/basket/
+http://10.0.2.4/orders/
+http://10.0.2.4/auth/update/
+http://10.0.2.4/orders/order/update/1/
+http://10.0.2.4/orders/order/update/2/
+http://10.0.2.4/orders/order/update/3/
+http://10.0.2.4/orders/order/update/5/

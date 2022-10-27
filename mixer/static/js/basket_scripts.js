@@ -14,3 +14,4 @@ window.onload = function () {
 
     })
 };
+// body > div > div.basket_list > div:nth-child(3) > input[type=number]

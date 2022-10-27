@@ -8,11 +8,12 @@
                 <div class="nameProduct">
                     <h2>{{ product.name }}</h2>
                 </div>
-                <div class="price">
-                    <div class="numprice">{{ product.price }}<i class="currancy fas fa-ruble-sign"></i></div>
-                    <div class="currancy"></div>
+                <div class="price text-center ">
+                    <div class="numprice d-inline-block">{{ product.price }}</div>
+                    <div class="currancy d-inline-block"><i class="fa fa-rub" aria-hidden="true"></i></div>
                 </div>
-                <div class="button_order_deal clearfix"><a href="{% url 'basket:add_product' product.pk %}" class="button_red_deal">Купить</a></div>
+                <div class="button_order_deal clearfix"><a href="{% url 'basket:add_product' product.pk %}"
+                                                           class="button_red_deal">Купить</a></div>
                 <div class="desc-product-deal">
                     <p>{{ product.description }}</p>
                     <p><strong>Состав:</strong>сахар, крахмал кукурузный, Е-904, пищевые красители.</p>

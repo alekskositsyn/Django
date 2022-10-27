@@ -1,7 +1,6 @@
 from django.db import models
-
+from django.utils.functional import cached_property
 from authapp.models import ShopUser
-
 from mainapp.models import Product
 
 
@@ -11,22 +10,27 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField('количество', default=0)
     add_datetime = models.DateTimeField('время', auto_now_add=True)
 
+    @cached_property
+    def get_item_cached(self):
+        return self.user.basket.select_related().all()
+
     @property
     def product_cost(self):
-        "return cost of all products this type"
         return self.product.price * self.quantity
 
     @property
     def total_quantity(self):
-        return sum(self.user.basket.values_list('quantity', flat=True))
-        # "return total quantity for user"
-        # _items = Basket.objects.filter(user=self.user)
-        # _totalquantity = sum(list(map(lambda x: x.quantity, _items)))
-        # return _totalquantity
+        return sum(map(lambda x: x.quantity, self.get_item_cached))
 
     @property
     def total_cost(self):
-        "return total cost for user"
-        _items = Basket.objects.filter(user=self.user)
-        _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
-        return _totalcost
+        return sum(map(lambda x: x.product_cost, self.get_item_cached))
+
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.get(pk=pk)
+
+    def delete(self, using=None, keep_parents=False):
+        self.product.quantity += self.quantity
+        self.product.save()
+        return super().delete(using=None, keep_parents=False)

@@ -18,8 +18,8 @@
                         товары категории
                     </a>
                     <a class="btn btn-outline-dark" href={% url 'adminapp:category_update' category.pk %}>
-                                редактировать
-                            </a>
+                        редактировать
+                    </a>
                     {% if category.is_active %}
                         <a class="btn btn-danger" href={% url 'adminapp:category_delete' category.pk %}>
                             удалить
