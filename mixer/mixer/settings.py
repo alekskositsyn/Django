@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -142,7 +142,6 @@ STATICFILES_DIRS = (
     'static',
 )
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -158,8 +157,8 @@ LOGIN_URL = '/auth/login/'
 
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_PORT = '465'
-# EMAIL_HOST_USER = 'akositsyn88@gmail.com'
-# EMAIL_HOST_PASSWORD = papka.get(EMAIL_HOST_PASSWORD)
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # DEFAULT_FROM_EMAIL = 'Mixer Shop'
 # EMAIL_USE_SSL = True
 # EMAIL_USE_TLS = True
@@ -192,12 +191,11 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 with open('mixer/social_auth.json', 'r') as f:
     SOCIAL = json.load(f)
 
-# SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.setdefault('SOCIAL_AUTH_VK_OAUTH2_KEY', VK['SOCIAL_AUTH_VK_OAUTH2_KEY'])
-SOCIAL_AUTH_VK_OAUTH2_KEY = SOCIAL.get('SOCIAL_AUTH_VK_OAUTH2_KEY', '')
-SOCIAL_AUTH_VK_OAUTH2_SECRET = SOCIAL.get('SOCIAL_AUTH_VK_OAUTH2_SECRET', '')
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_KEY', '')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_SECRET', '')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', '')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', '')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', '')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', '')
 
 LOGIN_ERROR_URL = '/auth/login/'
 
