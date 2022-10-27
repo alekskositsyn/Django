@@ -16,7 +16,8 @@
                                 <div class="nameOfProduct">{{ product.name }}
                                 </div>
                             </a>
-                            <div class="numprice">{{ product.price }}<i class="currancy fas fa-ruble-sign"></i></div>
+                            <div class="numprice">{{ product.price }}</div>
+                            <div><i class="fa fa-rub" aria-hidden="true"></i></div>
                             <a class="btn btn-danger" href="{% url 'basket:add_product' product.pk %}">В корзину</a>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 node_modules/
+mixer/.idea/
 dist/
 django2.2/
 .idea/dictionaries
