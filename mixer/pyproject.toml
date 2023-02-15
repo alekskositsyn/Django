@@ -6,7 +6,7 @@ authors = ["Aleks Kositsyn"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Django = "^3.2.9"
+Django = "^3.2.18"
 Pillow = "^8.4.0"
 
 [tool.poetry.dev-dependencies]
