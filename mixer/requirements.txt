@@ -15,7 +15,7 @@ constantly==15.1.0
 cryptography==3.0
 defusedxml==0.7.0rc1
 distro-info===0.18ubuntu0.18.04.1
-Django==2.2
+Django==3.2.20
 django-debug-toolbar==2.2
 django-debug-toolbar-template-profiler==2.0.1
 django-extensions==3.0.3
